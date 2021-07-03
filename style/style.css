@@ -19,6 +19,19 @@ img {
   max-width: 100%;
 }
 
+p {
+  margin: 0px;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+h2 {
+  margin: 0px;
+}
+
 body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: #FDFAF5;
@@ -47,7 +60,7 @@ body {
 
 /* Main */
 .main {
-  margin-top: 84px;
+  margin-top: 95px;
 }
 
 .container {
@@ -102,4 +115,62 @@ body {
 .main__start-test-buttom:hover {
   background-color: var(--logo-brown);
   color: var(--main-theme);
+}
+
+/* main question */
+.main-question__header {
+  margin-bottom: 35px;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 26px;
+}
+
+.main-questions {
+  padding-left: 30px;
+  margin-bottom: 80px;
+  list-style: none;
+}
+
+.question {
+  display: flex;
+  align-content: center;
+}
+
+.question:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.question__radioButton {
+  display: none;
+}
+
+.question__text {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  padding-left: 30px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.question__text::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  top: 1px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  background: url(/img/radio-button--defolt.svg) 0 0 no-repeat;
+  transition: background-image 0.2s;
+}
+
+.question__text:hover::before {
+  background: url('/img/radio-button--hover.svg') 0 0 no-repeat;
+}
+
+/* RB checked */
+.question__radioButton:checked + .question__text::before {
+  background: url('/img/radio-button--checked.svg') 0 0 no-repeat;
 }
