@@ -21,6 +21,9 @@ function makeRadioButton(value, name, style) {
 }
 
 
+
+
+
 function makeList(items, ulStyle = 'ul', liStyle = 'li') {
   const ul = document.createElement('ul')
   ul.classList.add(ulStyle)
@@ -63,6 +66,7 @@ function runFirstQuestion() {
     elements.push([radioButton, label])
   }
 
+  const section = makeElement('section', 'first-question-page')
   const ul = makeList(elements, 'main-questions', 'question')
   const container = makeElement('div', 'container')
   const questionHeader = makeElement('h2', 'main-question__header')
@@ -70,11 +74,12 @@ function runFirstQuestion() {
   questionHeader.textContent = 'Пожалуйста, укажите ваш тип кожи:'
   container.append(questionHeader)
   container.append(ul)
-  document.querySelector('.question-page').append(container)
+  section.append(container)
+  document.querySelector('main').append(section)
 }
 
 
-// Тестовая сборка первого вопроса
+// Тестовая сборка
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.main__start-test-buttom').addEventListener('click', runFirstQuestion)
 })
