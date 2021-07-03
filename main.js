@@ -20,8 +20,14 @@ function makeRadioButton(value, name, style) {
   return radioButton;
 }
 
-
-
+function makeAnswerVariant(answerText, inputName, inputStyle = 'variant__radioButton', labelStyle = 'variant__text') {
+  // Return array with radio button and label
+  const radioButton = makeRadioButton(answerText, inputName, inputStyle)
+  const label = makeElement('label', labelStyle)
+  label.textContent = answerText
+  label.htmlFor = radioButton.id
+  return [radioButton, label]
+}
 
 
 function makeList(items, ulStyle = 'ul', liStyle = 'li') {
@@ -43,31 +49,26 @@ function makeList(items, ulStyle = 'ul', liStyle = 'li') {
 }
 
 function runFirstQuestion() {
-  let variants = {
-    'Сухая': 'dry',
-    'Жирная': 'oily',
-    'Чувствительная': 'sensitive',
-    'Комбинированная': 'combined',
-    'Проблемная': 'problematic',
-    'Зрелая': 'mature',
-    'Нормальная': 'normal',
-    'Я не уверен/а (ищу подарок)': 'not sure',
-    'Я ищу гидролат для волос': 'hair'
-  }
+  let variants = [
+    'Сухая',
+    'Жирная',
+    'Чувствительная',
+    'Комбинированная',
+    'Проблемная',
+    'Зрелая',
+    'Нормальная',
+    'Я не уверен/а (ищу подарок)',
+    'Я ищу гидролат для волос'
+  ]
 
-  variants = Object.entries(variants)
   const elements = []
-  for (i of variants) {
-    const radioButton = makeRadioButton(i[1], 'first question', 'question__radioButton')
-    const label = document.createElement('label')
-    label.textContent = i[0]
-    label.htmlFor = radioButton.id
-    label.classList = 'question__text'
-    elements.push([radioButton, label])
+  for (let variant of variants) {
+    const inputWithLabel = makeAnswerVariant(variant, 'first question')
+    elements.push(inputWithLabel)
   }
 
   const section = makeElement('section', 'first-question-page')
-  const ul = makeList(elements, 'main-questions', 'question')
+  const ul = makeList(elements, 'main-questions', 'variant')
   const container = makeElement('div', 'container')
   const questionHeader = makeElement('h2', 'main-question__header')
 
@@ -81,5 +82,5 @@ function runFirstQuestion() {
 
 // Тестовая сборка
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.main__start-test-buttom').addEventListener('click', runFirstQuestion)
+  runFirstQuestion()
 })

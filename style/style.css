@@ -131,20 +131,20 @@ body {
   list-style: none;
 }
 
-.question {
+.variant {
   display: flex;
   align-content: center;
 }
 
-.question:not(:last-child) {
+.variant:not(:last-child) {
   margin-bottom: 25px;
 }
 
-.question__radioButton {
+.variant__radioButton {
   display: none;
 }
 
-.question__text {
+.variant__text {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -153,9 +153,10 @@ body {
   font-size: 18px;
   text-align: left;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: color .2s;
 }
 
-.question__text::before {
+.variant__text::before {
   content: '';
   position: absolute;
   display: inline-block;
@@ -167,11 +168,15 @@ body {
   transition: background-image 0.2s;
 }
 
-.question__text:hover::before {
+.variant__text:hover::before {
   background: url('/img/radio-button--hover.svg') 0 0 no-repeat;
 }
 
+.variant__text:hover {
+  color: var(--logo-brown)
+}
+
 /* RB checked */
-.question__radioButton:checked + .question__text::before {
+.variant__radioButton:checked + .variant__text::before {
   background: url('/img/radio-button--checked.svg') 0 0 no-repeat;
 }
