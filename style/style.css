@@ -125,7 +125,7 @@ body {
   line-height: 26px;
 }
 
-.questions {
+.variants {
   padding-left: 30px;
   margin-bottom: 80px;
   list-style: none;
@@ -181,6 +181,6 @@ body {
   background: url('/img/radio-button--checked.svg') 0 0 no-repeat;
 }
 
-.question--small {
+.question-header--new-question {
   margin-bottom: 50px;
 }

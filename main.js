@@ -88,7 +88,7 @@ function createFirstQuestion() {
   }
 
   const section = makeElement('section', 'first-question-page')
-  const ul = makeList(elements, 'questions', 'variant')
+  const ul = makeList(elements, 'variants', 'variant')
   const container = makeElement('div', 'container')
   const questionHeader = makeElement('h2', 'question-header')
 
@@ -101,19 +101,19 @@ function createFirstQuestion() {
 
 
 function createNewQuestion() {
-  const section = makeElement('section', 'newQuestion')
+  const section = makeElement('section', 'new-question')
   const container = makeElement('div', 'container')
-  const question = makeElement('h2', 'question-header')
+  const question = makeElement('h2', ['question-header', 'question-header--new-question'])
   const varianWithButtonY = makeAnswerVariant('Да', 'new question')
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
-  const answers = makeList([varianWithButtonY, varianWithButtonN], ['question', 'question--small'], 'variant')
+  const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
 
   question.textContent = 'Нужна защита от агрессивных факторов окружающей среды?'
 
   container.append(question)
   container.append(answers)
   section.append(container)
-  document.querySelector('main').append(section);
+  document.querySelector('main').append(section)
 }
 
 
