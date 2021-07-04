@@ -1,7 +1,13 @@
 var counterForIdRadioButton = 0
+
+
 function makeElement(nameElement, className = nameElement) {
   let element = document.createElement(nameElement)
-  element.classList.add(className)
+  if (Array.isArray(className)) {
+    element.classList.add(...className)
+  } else {
+    element.classList.add(className)
+  }
   return element
 }
 
@@ -11,7 +17,11 @@ function makeRadioButton(value, name, style) {
   radioButton.name = name
   radioButton.value = value
   radioButton.type = 'radio'
-  radioButton.classList.add(style)
+  if (Array.isArray(style)) {
+    radioButton.classList.add(...style)
+  } else {
+    radioButton.classList.add(style)
+  }
 
   counterForIdRadioButton++
   const id = counterForIdRadioButton
@@ -32,9 +42,15 @@ function makeAnswerVariant(answerText, inputName, inputStyle = 'variant__radioBu
 
 function makeList(items, ulStyle = 'ul', liStyle = 'li') {
   const ul = document.createElement('ul')
-  ul.classList.add(ulStyle)
+  // Если классов будет несколько (массив), они добавятся корректно
+  if (Array.isArray(ulStyle)) {
+    ul.classList.add(...ulStyle)
+  } else {
+    ul.classList.add(ulStyle)
+  }
   for (i of items) {
     const li = document.createElement('li')
+    // Если элементов для добавление в li несколько (массив) они добавятся корректно
     if (Array.isArray(i)) {
       for (j of i) {
         li.append(j)
@@ -42,13 +58,17 @@ function makeList(items, ulStyle = 'ul', liStyle = 'li') {
     } else {
       li.append(i);
     }
-    li.classList.add(liStyle)
+    if (Array.isArray(liStyle)) {
+      li.classList.add(...liStyle)
+    } else {
+      li.classList.add(liStyle)
+    }
     ul.append(li);
   }
   return ul;
 }
 
-function runFirstQuestion() {
+function createFirstQuestion() {
   let variants = [
     'Сухая',
     'Жирная',
@@ -68,9 +88,9 @@ function runFirstQuestion() {
   }
 
   const section = makeElement('section', 'first-question-page')
-  const ul = makeList(elements, 'main-questions', 'variant')
+  const ul = makeList(elements, 'questions', 'variant')
   const container = makeElement('div', 'container')
-  const questionHeader = makeElement('h2', 'main-question__header')
+  const questionHeader = makeElement('h2', 'question-header')
 
   questionHeader.textContent = 'Пожалуйста, укажите ваш тип кожи:'
   container.append(questionHeader)
@@ -80,7 +100,25 @@ function runFirstQuestion() {
 }
 
 
+function createNewQuestion() {
+  const section = makeElement('section', 'newQuestion')
+  const container = makeElement('div', 'container')
+  const question = makeElement('h2', 'question-header')
+  const varianWithButtonY = makeAnswerVariant('Да', 'new question')
+  const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
+  const answers = makeList([varianWithButtonY, varianWithButtonN], ['question', 'question--small'], 'variant')
+
+  question.textContent = 'Нужна защита от агрессивных факторов окружающей среды?'
+
+  container.append(question)
+  container.append(answers)
+  section.append(container)
+  document.querySelector('main').append(section);
+}
+
+
 // Тестовая сборка
 document.addEventListener('DOMContentLoaded', () => {
-  runFirstQuestion()
+  createFirstQuestion()
+  createNewQuestion()
 })

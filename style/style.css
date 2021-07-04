@@ -118,14 +118,14 @@ body {
 }
 
 /* main question */
-.main-question__header {
+.question-header {
   margin-bottom: 35px;
   font-weight: normal;
   font-size: 25px;
   line-height: 26px;
 }
 
-.main-questions {
+.questions {
   padding-left: 30px;
   margin-bottom: 80px;
   list-style: none;
@@ -179,4 +179,8 @@ body {
 /* RB checked */
 .variant__radioButton:checked + .variant__text::before {
   background: url('/img/radio-button--checked.svg') 0 0 no-repeat;
+}
+
+.question--small {
+  margin-bottom: 50px;
 }
