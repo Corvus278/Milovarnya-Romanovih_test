@@ -90,10 +90,10 @@ function createFirstQuestion() {
   const section = makeElement('section', 'first-question-page')
   const ul = makeList(elements, 'variants', 'variant')
   const container = makeElement('div', 'container')
-  const questionHeader = makeElement('h2', 'question-header')
+  const questionHeading = makeElement('h2', 'question-heading')
 
-  questionHeader.textContent = 'Пожалуйста, укажите ваш тип кожи:'
-  container.append(questionHeader)
+  questionHeading.textContent = 'Пожалуйста, укажите ваш тип кожи:'
+  container.append(questionHeading)
   container.append(ul)
   section.append(container)
   document.querySelector('main').append(section)
@@ -103,7 +103,7 @@ function createFirstQuestion() {
 function createNewQuestion() {
   const section = makeElement('section', 'new-question')
   const container = makeElement('div', 'container')
-  const question = makeElement('h2', ['question-header', 'question-header--new-question'])
+  const question = makeElement('h2', ['question-heading', 'question-heading--new-question'])
   const varianWithButtonY = makeAnswerVariant('Да', 'new question')
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
