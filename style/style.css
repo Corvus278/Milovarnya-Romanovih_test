@@ -9,6 +9,7 @@
 :root {
   --main-theme: #FDFAF5;
   --logo-brown: #983724;
+  --arrow-button_size: 40px;
 }
 
 * {
@@ -205,6 +206,52 @@ body {
   font-size: 20px;
 }
 
+/* next-button */
+.gidrolat__next-button--left {
+  position: absolute;
+  left: calc(0px - var(--arrow-button_size) - 10px);
+  top: 130px;
+  transform: rotate(180deg);
+}
+
+.gidrolat__next-button--right {
+  position: absolute;
+  right: calc(0px - var(--arrow-button_size) - 10px);
+  top: 130px;
+}
+
+.gidrolat__next-button {
+  width: var(--arrow-button_size);
+  height: var(--arrow-button_size);
+}
+.arrow-button {
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  border-radius: 50%;
+}
+
+.arrow-button__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.arrow-button:hover
+.arrow-button__background {
+  fill: var(--logo-brown);
+}
+
+.arrow-button:hover
+.arrow-button__arrow {
+  stroke: var(--main-theme);
+}
+
+.arrow-button-transition {
+  transition-property: fill, stroke;
+  transition-duration: .2s;
+}
+/**/
+
 .final__heading-gidrolats {
   margin-bottom: 15px;
   font-size: 20px;
@@ -212,16 +259,19 @@ body {
 }
 
 .gidrolat__wrapper {
+  position: relative;
+  max-width: 240px;
+  margin: 0 auto;
   margin-bottom: 45px;
 }
 
 .gidrolat__heading {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 18px;
 }
 
 .gidrolat__img {
-  margin-bottom: 8px;
+  margin-bottom: 3px;
 }
 
 .gidrolat__text-list {
@@ -232,17 +282,17 @@ body {
 }
 
 .gidrolat__description {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .gidrolat__use-list-heading {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   font-weight: normal;
   font-size: 20px;
 }
 
 .gidrolat__as-using-list {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .gidrolat__more-info {
