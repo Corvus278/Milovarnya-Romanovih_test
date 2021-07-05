@@ -229,6 +229,7 @@ body {
   background-color: inherit;
   border: none;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .arrow-button__svg {
@@ -282,7 +283,7 @@ body {
 }
 
 .gidrolat__description {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .gidrolat__use-list-heading {
@@ -296,7 +297,7 @@ body {
 }
 
 .gidrolat__more-info {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .gidrolat__more-info-link {
