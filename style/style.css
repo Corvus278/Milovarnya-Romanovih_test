@@ -10,6 +10,7 @@
   --main-theme: #FDFAF5;
   --logo-brown: #983724;
   --arrow-button_size: 40px;
+  --arrow-button_margin: 10px;
 }
 
 * {
@@ -203,22 +204,27 @@ body {
 }
 
 .final__heading {
-  margin-bottom: 35px;
+  margin-bottom: 5px;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 25px;
+}
+
+.final__text-bonus {
+  margin-bottom: 40px;
+  font-size: 18px;
 }
 
 /* next-button */
 .gidrolat__next-button--left {
   position: absolute;
-  left: calc(0px - var(--arrow-button_size) - 10px);
+  left: calc(0px - var(--arrow-button_size) - var(--arrow-button_margin));
   top: 130px;
   transform: rotate(180deg);
 }
 
 .gidrolat__next-button--right {
   position: absolute;
-  right: calc(0px - var(--arrow-button_size) - 10px);
+  right: calc(0px - var(--arrow-button_size) - var(--arrow-button_margin));
   top: 130px;
 }
 
@@ -345,6 +351,23 @@ body {
   .variants {
     padding-left: 70px;
   }
+
+  .gidrolat__wrapper {
+    max-width: 400px;
+  }
+
+  .final__present-text {
+    max-width: none;
+  }
+
+  .gidrolat__next-button {
+    --arrow-button_margin: 20px;
+  }
+
+  .gidrolat__next-button--left,
+  .gidrolat__next-button--right {
+    top: 200px;
+  }
 }
 
 @media (min-width: 960px) {
@@ -382,8 +405,67 @@ body {
     font-size: 20px;
   }
 
+  .gidrolat__wrapper {
+    max-width: 450px;
+  }
+
+  .gidrolat__next-button {
+    --arrow-button_margin: 35px;
+  }
+
+  .gidrolat__next-button--left,
+  .gidrolat__next-button--right {
+    top: 225px;
+  }
+
+  .final__heading {
+    font-size: 27px;
+  }
+
+  .final__text-bonus {
+    font-size: 20px;
+  }
+
+  .final__heading-gidrolats {
+    font-size: 22px;
+  }
+
+  .gidrolat__heading {
+    font-size: 20px;
+  }
+
+  .gidrolat__text-list {
+    font-size: 16px;
+  }
+
+  .gidrolat__use-list-heading {
+    font-size: 22px;
+  }
+
+  .gidrolat__more-info {
+    font-size: 20px;
+  }
+
+  .final__present-text {
+    font-size: 22px;
+  }
+
+  .final__form-description {
+    font-size: 18px;
+  }
 }
 
 @media (min-width: 1280px) {
+  .gidrolat__wrapper {
+    max-width: 550px;
+  }
 
+  .gidrolat__next-button {
+    --arrow-button_margin: 45px;
+  }
+
+  .gidrolat__next-button--left,
+  .gidrolat__next-button--right {
+    top: 275px;
+  }
 }
