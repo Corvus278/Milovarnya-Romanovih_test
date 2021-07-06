@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Georgia';
-  src: url('9605-webfont.woff2') format('woff2'),
-       url('9605-webfont.woff') format('woff');
+  src: url('/fonts/9605-webfont.woff2') format('woff2'),
+       url('/fonts/9605-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -128,7 +128,9 @@ body {
 
 /* main question */
 .question-heading {
+  margin: 0 auto;
   margin-bottom: 35px;
+  max-width: 500px;
   font-weight: normal;
   font-size: 25px;
   line-height: 26px;
@@ -328,4 +330,60 @@ body {
 
 .final__form-description {
   line-height: 20px;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 500px;
+  }
+
+  .main__heading {
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  .variants {
+    padding-left: 70px;
+  }
+}
+
+@media (min-width: 960px) {
+  .container {
+    max-width: 700px;
+  }
+
+  .main__heading {
+    font-size: 35px;
+    line-height: 1;
+  }
+
+
+  .variants {
+    padding-left: 185px;
+  }
+
+  .main__heading {
+    font-size: 40px;
+  }
+
+  .main__about-gidrolat {
+    font-size: 20px;
+  }
+
+  .main__start-test-buttom {
+    font-size: 20px;
+  }
+
+  .question-heading {
+    font-size: 27px;
+  }
+
+  .variant__text {
+    font-size: 20px;
+  }
+
+}
+
+@media (min-width: 1280px) {
+
 }

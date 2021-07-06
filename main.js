@@ -88,7 +88,7 @@ function createFirstQuestion() {
   }
 
   const section = makeElement('section', 'first-question-page')
-  const ul = makeList(elements, 'variants', 'variant')
+  const ul = makeList(elements, ['variants', 'variants--first-question'], 'variant')
   const container = makeElement('div', 'container')
   const questionHeading = makeElement('h2', 'question-heading')
 
