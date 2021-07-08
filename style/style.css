@@ -217,19 +217,20 @@ body {
 /* next-button */
 .gidrolat__next-button {
   position: absolute;
-  top: 130px;
+  /* Позиционируется относительно документа, расчёт позиции - js */
+  top: calc(var(--button_position-Y) * 1px);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .gidrolat__next-button--left {
   /* Позиционируется относительно документа, расчёт позиции - js */
-  left: calc(var(--button-position) * 1px);
+  left: calc(var(--button_position-X) * 1px);
   transform: rotate(180deg);
 }
 
 .gidrolat__next-button--right {
   /* Позиционируется относительно документа, расчёт позиции - js */
-  right: calc(var(--button-position) * 1px);
+  right: calc(var(--button_position-X) * 1px);
 }
 
 .gidrolat__next-button--fixed {
@@ -370,10 +371,6 @@ body {
   :root {
     --arrow-button_margin: 20px;
   }
-
-  .gidrolat__next-button {
-    top: 200px;
-  }
 }
 
 @media (min-width: 960px) {
@@ -417,10 +414,6 @@ body {
 
   :root {
     --arrow-button_margin: 35px;
-  }
-
-  .gidrolat__next-button {
-    top: 225px;
   }
 
   .final__heading {
@@ -467,9 +460,5 @@ body {
 
   :root {
     --arrow-button_margin: 45px;
-  }
-
-  .gidrolat__next-button {
-    top: 275px;
   }
 }
