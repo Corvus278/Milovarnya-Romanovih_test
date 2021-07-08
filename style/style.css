@@ -228,6 +228,10 @@ body {
   top: 130px;
 }
 
+.gidrolat__next-button--fixed {
+  position: fixed;
+}
+
 .gidrolat__next-button {
   width: var(--arrow-button_size);
   height: var(--arrow-button_size);
