@@ -1,4 +1,19 @@
 var counterForIdRadioButton = 0
+var counterForIdQuestion = 1000
+var scrollAnimateDuration = 800
+var pauseBeforeScroll = 300
+
+
+function animatedScroll(href) {
+  jQuery(document).ready(function ($) {
+    $('html, body').animate({
+      scrollTop: $(href).offset().top
+    }, {
+      duration: scrollAnimateDuration,   // по умолчанию «400»
+      // easing: "linear" // по умолчанию «swing»
+    });
+  }, pauseBeforeScroll);
+}
 
 
 function makeElement(nameElement, className = nameElement) {
@@ -12,11 +27,20 @@ function makeElement(nameElement, className = nameElement) {
 }
 
 
-function makeRadioButton(value, name, style) {
+function makeVariant(value, name, style) {
   const radioButton = document.createElement('input')
   radioButton.name = name
   radioButton.value = value
   radioButton.type = 'radio'
+
+  // При клике будет создаваться новый вопрос
+  radioButton.addEventListener('change', () => {
+    createNewQuestion()
+    setTimeout(() => {
+      const href = '#' + String(counterForIdQuestion - 1)
+      animatedScroll(href)
+    }, pauseBeforeScroll)
+  })
   if (Array.isArray(style)) {
     radioButton.classList.add(...style)
   } else {
@@ -32,7 +56,7 @@ function makeRadioButton(value, name, style) {
 
 function makeAnswerVariant(answerText, inputName, inputStyle = 'variant__radioButton', labelStyle = 'variant__text') {
   // Return array with radio button and label
-  const radioButton = makeRadioButton(answerText, inputName, inputStyle)
+  const radioButton = makeVariant(answerText, inputName, inputStyle)
   const label = makeElement('label', labelStyle)
   label.textContent = answerText
   label.htmlFor = radioButton.id
@@ -104,6 +128,10 @@ function createFirstQuestion() {
   const container = makeElement('div', ['container', 'container--question'])
   const questionHeading = makeElement('h2', 'question-heading')
 
+  // id для скролла
+  section.id = counterForIdQuestion
+  counterForIdQuestion++
+
   // Добавление вопроса на страницу
   questionHeading.textContent = 'Пожалуйста, укажите ваш тип кожи:'
   container.append(questionHeading)
@@ -127,6 +155,10 @@ function createNewQuestion() {
 
   question.textContent = 'Нужна защита от агрессивных факторов окружающей среды?'
 
+  // id для скролла
+  section.id = counterForIdQuestion
+  counterForIdQuestion++
+
   // Добавление вопроса на страницу
   container.append(question)
   container.append(answers)
@@ -139,8 +171,13 @@ function createNewQuestion() {
 }
 
 
-// Тестовая сборка
 document.addEventListener('DOMContentLoaded', () => {
-  createFirstQuestion()
-  createNewQuestion()
+  const startButton = document.querySelector('.main__start-test-buttom')
+  startButton.addEventListener('click', () => {
+    createFirstQuestion()
+    setTimeout(() => {
+      animatedScroll('#1000')
+    }, pauseBeforeScroll)
+
+  })
 })
