@@ -175,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.querySelector('.main__start-test-buttom')
   startButton.addEventListener('click', () => {
     createFirstQuestion()
+    document.body.style.overflow = "hidden"
     setTimeout(() => {
       animatedScroll('#1000')
     }, pauseBeforeScroll)
