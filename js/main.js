@@ -68,7 +68,19 @@ function makeList(items, ulStyle = 'ul', liStyle = 'li') {
   return ul;
 }
 
+
+function giveMarginYAllPage(element) {
+  const windowHeight = window.innerHeight
+  const elementHeight = element.offsetHeight
+
+  let margin = (windowHeight - elementHeight) / 2
+  element.style.marginTop = String(margin) + 'px'
+  element.style.marginBottom = String(margin) + 'px'
+}
+
+
 function createFirstQuestion() {
+  // Создание вопроса
   let variants = [
     'Сухая',
     'Жирная',
@@ -89,20 +101,25 @@ function createFirstQuestion() {
 
   const section = makeElement('section', 'first-question-page')
   const ul = makeList(elements, ['variants', 'variants--first-question'], 'variant')
-  const container = makeElement('div', 'container')
+  const container = makeElement('div', ['container', 'container--question'])
   const questionHeading = makeElement('h2', 'question-heading')
 
+  // Добавление вопроса на страницу
   questionHeading.textContent = 'Пожалуйста, укажите ваш тип кожи:'
   container.append(questionHeading)
   container.append(ul)
   section.append(container)
   document.querySelector('main').append(section)
+
+  // Вопрос получает отступы для занятия всей страницы
+  const questionContainer = document.querySelector('.container--question')
+  giveMarginYAllPage(questionContainer)
 }
 
 
 function createNewQuestion() {
   const section = makeElement('section', 'new-question')
-  const container = makeElement('div', 'container')
+  const container = makeElement('div', ['container', 'container--question'])
   const question = makeElement('h2', ['question-heading', 'question-heading--new-question'])
   const varianWithButtonY = makeAnswerVariant('Да', 'new question')
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
@@ -110,10 +127,15 @@ function createNewQuestion() {
 
   question.textContent = 'Нужна защита от агрессивных факторов окружающей среды?'
 
+  // Добавление вопроса на страницу
   container.append(question)
   container.append(answers)
   section.append(container)
   document.querySelector('main').append(section)
+
+  // Вопрос получает отступы для занятия всей страницы
+  const questionContainer = document.getElementsByClassName('container--question')[document.getElementsByClassName('container--question').length - 1]
+  giveMarginYAllPage(questionContainer)
 }
 
 

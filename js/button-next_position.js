@@ -22,7 +22,11 @@ function givButtonPosition() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  givButtonPosition()
+  // Таймаут для ожидания применения css стилей
+  const gidrolatImg = document.querySelector('.gidrolat__img')
+  gidrolatImg.addEventListener('load', () => {
+    givButtonPosition()
+  })
 
   // Изменение размера экрана
   window.addEventListener('resize', () => {

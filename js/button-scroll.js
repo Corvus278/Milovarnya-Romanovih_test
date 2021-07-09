@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('scroll', () => {
     if (buttonPositionGlobal - window.scrollY <= viewportCenter) {
-      // button.querySelector('.arrow-button__svg').classList.add('gidrolat__next-button--fixed')
+      button.classList.add('gidrolat__next-button--fixed')
       // button.style.top = String(button.offsetTop + (window.scrollY - lastScroll)) + 'px'
-      console.log(window.scrollY - lastScroll)
+      // console.log(window.scrollY - lastScroll)
       lastScroll = window.scrollY
     }
   })
