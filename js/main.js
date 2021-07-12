@@ -4,7 +4,7 @@ var scrollAnimateDuration = 800
 var pauseBeforeScroll = 300
 
 
-function animatedScroll(href) {
+function animateScroll(href) {
   jQuery(document).ready(function ($) {
     $('html, body').animate({
       scrollTop: $(href).offset().top
@@ -38,7 +38,7 @@ function makeVariant(value, name, style) {
     createNewQuestion()
     setTimeout(() => {
       const href = '#' + String(counterForIdQuestion - 1)
-      animatedScroll(href)
+      animateScroll(href)
     }, pauseBeforeScroll)
   })
   if (Array.isArray(style)) {
@@ -53,6 +53,7 @@ function makeVariant(value, name, style) {
 
   return radioButton;
 }
+
 
 function makeAnswerVariant(answerText, inputName, inputStyle = 'variant__radioButton', labelStyle = 'variant__text') {
   // Return array with radio button and label
@@ -146,6 +147,7 @@ function createFirstQuestion() {
 
 
 function createNewQuestion() {
+  console.log(QuestionBackButton)
   const section = makeElement('section', 'new-question')
   const container = makeElement('div', ['container', 'container--question'])
   const question = makeElement('h2', ['question-heading', 'question-heading--new-question'])
@@ -162,6 +164,8 @@ function createNewQuestion() {
   // Добавление вопроса на страницу
   container.append(question)
   container.append(answers)
+  QuestionBackButton.style.display = 'block'
+  container.append(QuestionBackButton)
   section.append(container)
   document.querySelector('main').append(section)
 
@@ -173,11 +177,12 @@ function createNewQuestion() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.querySelector('.main__start-test-buttom')
+  window.QuestionBackButton = document.querySelector('.question__button-back')
   startButton.addEventListener('click', () => {
     createFirstQuestion()
     document.body.style.overflow = "hidden"
     setTimeout(() => {
-      animatedScroll('#1000')
+      animateScroll('#1000')
     }, pauseBeforeScroll)
 
   })

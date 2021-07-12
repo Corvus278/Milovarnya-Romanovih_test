@@ -188,6 +188,19 @@ body {
   color: var(--logo-brown)
 }
 
+.container--question {
+  position: relative;
+}
+
+.question__button-back {
+  position: absolute;
+  width: calc(var(--arrow-button_size) + 10px);
+  height: calc(var(--arrow-button_size) + 5px);
+  bottom: -100px;
+  right: 20px;
+  transform: rotate(270deg);
+}
+
 /* RB checked */
 .variant__radioButton:checked + .variant__text::before {
   background: url('/img/radio-button--checked.svg') 0 0 no-repeat;
@@ -219,7 +232,6 @@ body {
   position: absolute;
   /* Позиционируется относительно документа, расчёт позиции - js */
   top: calc(var(--button_position-Y) * 1px);
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .gidrolat__next-button--left {
@@ -247,6 +259,7 @@ body {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .arrow-button__svg {
