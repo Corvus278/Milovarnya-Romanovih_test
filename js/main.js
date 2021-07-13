@@ -1,7 +1,12 @@
 var counterForIdRadioButton = 0
-var counterForIdQuestion = 1000
+var counterForIdQuestionSection = 1000
+var numberQuestion = 0
+var firstQuestionAnswer
 var scrollAnimateDuration = 800
 var pauseBeforeScroll = 300
+
+// Вопросы
+const dataQuestions = JSON.parse(data)
 
 
 function animateScroll(href) {
@@ -33,14 +38,6 @@ function makeVariant(value, name, style) {
   radioButton.value = value
   radioButton.type = 'radio'
 
-  // При клике будет создаваться новый вопрос
-  radioButton.addEventListener('change', () => {
-    createNewQuestion()
-    setTimeout(() => {
-      const href = '#' + String(counterForIdQuestion - 1)
-      animateScroll(href)
-    }, pauseBeforeScroll)
-  })
   if (Array.isArray(style)) {
     radioButton.classList.add(...style)
   } else {
@@ -105,7 +102,7 @@ function giveMarginYAllPage(element) {
 
 
 function scrollWidth() {
-  var div = $('<div>').css({
+  const div = $('<div>').css({
     position: "absolute",
     top: "0px",
     left: "0px",
@@ -117,7 +114,7 @@ function scrollWidth() {
 
   $('body').eq(0).append(div);
 
-  var width = div.get(0).offsetWidth - div.get(0).clientWidth;
+  const width = div.get(0).offsetWidth - div.get(0).clientWidth;
 
   div.remove();
 
@@ -126,10 +123,8 @@ function scrollWidth() {
 
 
 function removeUserScroll() {
-  const scrollBar = scrollWidth()
-  if (scrollBar !== 0) {
-    console.log(scrollBar)
-    document.body.style.paddingRight = String(scrollBar) + 'px'
+  if (window.scrollY !== 0) {
+    document.body.style.paddingRight = String(scrollWidth()) + 'px'
   }
   document.body.style.overflow = "hidden"
 }
@@ -137,17 +132,7 @@ function removeUserScroll() {
 
 function createFirstQuestion() {
   // Создание вопроса
-  let variants = [
-    'Сухая',
-    'Жирная',
-    'Чувствительная',
-    'Комбинированная',
-    'Проблемная',
-    'Зрелая',
-    'Нормальная',
-    'Я не уверен/а (ищу подарок)',
-    'Я ищу гидролат для волос'
-  ]
+  const variants = dataQuestions['firstQuestion']
 
   const elements = []
   for (let variant of variants) {
@@ -161,8 +146,8 @@ function createFirstQuestion() {
   const questionHeading = makeElement('h2', 'question-heading')
 
   // id для скролла
-  section.id = counterForIdQuestion
-  counterForIdQuestion++
+  section.id = counterForIdQuestionSection
+  counterForIdQuestionSection++
 
   // Добавление вопроса на страницу
   questionHeading.textContent = 'Пожалуйста, укажите ваш тип кожи:'
@@ -174,11 +159,23 @@ function createFirstQuestion() {
   // Вопрос получает отступы для занятия всей страницы
   const questionContainer = document.querySelector('.container--question')
   giveMarginYAllPage(questionContainer)
+
+  // Индивидуальный обработчик для первого вопроса
+  const radioButtons = document.querySelector('.variants--first-question').getElementsByClassName('variant__radioButton ')
+  for (const radioButton of radioButtons) {
+    radioButton.addEventListener('change', () => {
+      firstQuestionAnswer = radioButton.value
+      createNewQuestion()
+      setTimeout(() => {
+        const href = '#' + String(counterForIdQuestionSection - 1)
+        animateScroll(href)
+      }, pauseBeforeScroll)
+    })
+  }
 }
 
 
 function createNewQuestion() {
-  console.log(QuestionBackButton)
   const section = makeElement('section', 'new-question')
   const container = makeElement('div', ['container', 'container--question'])
   const question = makeElement('h2', ['question-heading', 'question-heading--new-question'])
@@ -186,11 +183,15 @@ function createNewQuestion() {
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
 
-  question.textContent = 'Нужна защита от агрессивных факторов окружающей среды?'
+  // Определение текста вопроса
+  console.log(firstQuestionAnswer)
+  questionDict = dataQuestions[firstQuestionAnswer]
+  const questionList = Object.keys(questionDict)
+  question.textContent = questionList[numberQuestion]
 
   // id для скролла
-  section.id = counterForIdQuestion
-  counterForIdQuestion++
+  section.id = counterForIdQuestionSection
+  counterForIdQuestionSection++
 
   // Добавление вопроса на страницу
   container.append(question)
@@ -203,6 +204,21 @@ function createNewQuestion() {
   // Вопрос получает отступы для занятия всей страницы
   const questionContainer = document.getElementsByClassName('container--question')[document.getElementsByClassName('container--question').length - 1]
   giveMarginYAllPage(questionContainer)
+
+  // обработчик для создания следующего вопроса
+  const lastQuestions = document.getElementsByClassName('new-question')[document.getElementsByClassName('new-question').length - 1]
+  const lastRadioButtons = lastQuestions.getElementsByClassName('variant__radioButton')
+
+  for (const radioButton of lastRadioButtons) {
+    radioButton.addEventListener('change', () => {
+      numberQuestion++
+      createNewQuestion()
+      setTimeout(() => {
+        const href = '#' + String(counterForIdQuestionSection - 1)
+        animateScroll(href)
+      }, pauseBeforeScroll)
+    })
+  }
 }
 
 
@@ -215,6 +231,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       animateScroll('#1000')
     }, pauseBeforeScroll)
-
   })
 })
