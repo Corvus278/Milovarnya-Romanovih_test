@@ -43,8 +43,14 @@ h3 {
 }
 
 body {
+  margin: 8px 0px;
+  max-width: auto;
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: #FDFAF5;
+}
+
+.content-wrapper {
+  margin: 0px 8px;
 }
 
 /* Header */
@@ -96,11 +102,12 @@ body {
 }
 
 .main__about-gidrolat--middle {
-  margin-bottom: 20px;
+  margin-bottom: 45px;
 }
 
 .main__gidrolat-img {
-  margin-bottom: 20px;
+  width: 45%;
+  margin-bottom: 45px;
 }
 
 .main__about-gidrolat--bottom {

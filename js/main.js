@@ -104,6 +104,37 @@ function giveMarginYAllPage(element) {
 }
 
 
+function scrollWidth() {
+  var div = $('<div>').css({
+    position: "absolute",
+    top: "0px",
+    left: "0px",
+    width: "100px",
+    height: "100px",
+    visibility: "hidden",
+    overflow: "scroll"
+  });
+
+  $('body').eq(0).append(div);
+
+  var width = div.get(0).offsetWidth - div.get(0).clientWidth;
+
+  div.remove();
+
+  return width;
+}
+
+
+function removeUserScroll() {
+  const scrollBar = scrollWidth()
+  if (scrollBar !== 0) {
+    console.log(scrollBar)
+    document.body.style.paddingRight = String(scrollBar) + 'px'
+  }
+  document.body.style.overflow = "hidden"
+}
+
+
 function createFirstQuestion() {
   // Создание вопроса
   let variants = [
@@ -180,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.QuestionBackButton = document.querySelector('.question__button-back')
   startButton.addEventListener('click', () => {
     createFirstQuestion()
-    document.body.style.overflow = "hidden"
+    removeUserScroll()
     setTimeout(() => {
       animateScroll('#1000')
     }, pauseBeforeScroll)
