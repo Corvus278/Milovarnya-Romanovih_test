@@ -1,12 +1,24 @@
-var counterForIdRadioButton = 0
-var counterForIdQuestionSection = 1000
-var numberQuestion = 0
-var firstQuestionAnswer
-var scrollAnimateDuration = 800
-var pauseBeforeScroll = 300
+let counterForIdRadioButton = 0
+let counterForIdQuestionSection = 1000
+let numberQuestion = 0
+let firstQuestionAnswer
+const selectGidrolatList = []
+const scrollAnimateDuration = 800
+const pauseBeforeScroll = 300
 
 // Вопросы
 const dataQuestions = JSON.parse(data)
+
+
+function removeSpaceAndCS(string) {
+  // Удаление пробелов
+  string = string.split(' ').join('')
+  // Перевод строки в нижний регистр
+  string = string.toLowerCase()
+
+
+  return string
+}
 
 
 function animateScroll(href) {
@@ -184,7 +196,6 @@ function createNewQuestion() {
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
 
   // Определение текста вопроса
-  console.log(firstQuestionAnswer)
   questionDict = dataQuestions[firstQuestionAnswer]
   const questionList = Object.keys(questionDict)
   question.textContent = questionList[numberQuestion]
@@ -211,12 +222,33 @@ function createNewQuestion() {
 
   for (const radioButton of lastRadioButtons) {
     radioButton.addEventListener('change', () => {
-      numberQuestion++
-      createNewQuestion()
-      setTimeout(() => {
-        const href = '#' + String(counterForIdQuestionSection - 1)
-        animateScroll(href)
-      }, pauseBeforeScroll)
+      // Занесение гидролата в список
+      if (radioButton.id < counterForIdRadioButton) {
+        const selectGidrolatName = questionDict[question.textContent]
+        if (Array.isArray(selectGidrolatName)) {
+          for (const i of selectGidrolatName) {
+            if (!(selectGidrolatList.includes(removeSpaceAndCS(i)))) {
+              selectGidrolatList.push(removeSpaceAndCS(i))
+            }
+          }
+        } else {
+          if (!selectGidrolatList.includes(removeSpaceAndCS(selectGidrolatName))) {
+            selectGidrolatList.push(removeSpaceAndCS(selectGidrolatName))
+          }
+        }
+        console.log(selectGidrolatList)
+      } else {
+        // Запрос к серверу
+      }
+
+      if (numberQuestion < questionList.length - 1) {
+        numberQuestion++
+        createNewQuestion()
+        setTimeout(() => {
+          const href = '#' + String(counterForIdQuestionSection - 1)
+          animateScroll(href)
+        }, pauseBeforeScroll)
+      }
     })
   }
 }
