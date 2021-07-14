@@ -21,7 +21,7 @@ function removeSpaceAndCS(string) {
 }
 
 
-function animateScroll(href) {
+function animateScroll(href, removeLastQuestion = false) {
   jQuery(document).ready(function ($) {
     $('html, body').animate({
       scrollTop: $(href).offset().top
@@ -30,6 +30,16 @@ function animateScroll(href) {
       // easing: "linear" // по умолчанию «swing»
     });
   }, pauseBeforeScroll);
+
+  // Удаление последнего вопроса со страницы
+  if (removeLastQuestion) {
+    setTimeout(() => {
+      const allQuestions = document.getElementsByClassName('new-question')
+      const lastQuestion = allQuestions[allQuestions.length - 1]
+
+      lastQuestion.remove()
+    }, pauseBeforeScroll + scrollAnimateDuration)
+  }
 }
 
 
@@ -103,13 +113,13 @@ function makeList(items, ulStyle = 'ul', liStyle = 'li') {
 }
 
 
-function giveMarginYAllPage(element) {
+function giveIndentYAllPage(element) {
   const windowHeight = window.innerHeight
   const elementHeight = element.offsetHeight
 
-  let margin = (windowHeight - elementHeight) / 2
-  element.style.marginTop = String(margin) + 'px'
-  element.style.marginBottom = String(margin) + 'px'
+  let indent = (windowHeight - elementHeight) / 2
+  element.style.paddingTop = String(indent) + 'px'
+  element.style.marginBottom = String(indent) + 'px'
 }
 
 
@@ -170,7 +180,7 @@ function createFirstQuestion() {
 
   // Вопрос получает отступы для занятия всей страницы
   const questionContainer = document.querySelector('.container--question')
-  giveMarginYAllPage(questionContainer)
+  giveIndentYAllPage(questionContainer)
 
   // Индивидуальный обработчик для первого вопроса
   const radioButtons = document.querySelector('.variants--first-question').getElementsByClassName('variant__radioButton ')
@@ -214,7 +224,7 @@ function createNewQuestion() {
 
   // Вопрос получает отступы для занятия всей страницы
   const questionContainer = document.getElementsByClassName('container--question')[document.getElementsByClassName('container--question').length - 1]
-  giveMarginYAllPage(questionContainer)
+  giveIndentYAllPage(questionContainer)
 
   // обработчик для создания следующего вопроса
   const lastQuestions = document.getElementsByClassName('new-question')[document.getElementsByClassName('new-question').length - 1]
@@ -262,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // обработчик
   QuestionBackButton.addEventListener('click', () => {
     counterForIdQuestionSection -= 2
-    animateScroll('#' + String(counterForIdQuestionSection), 0)
+    animateScroll('#' + String(counterForIdQuestionSection), true)
     if (counterForIdQuestionSection !== 1000) {
       const nowSection = document.getElementById(counterForIdQuestionSection)
       const questionText = nowSection.querySelector('.question-heading').textContent
