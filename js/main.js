@@ -2,7 +2,7 @@ let counterForIdRadioButton = 0
 let counterForIdQuestionSection = 1000
 let numberQuestion = 0
 let firstQuestionAnswer
-const selectGidrolatList = []
+let selectGidrolatList = []
 const scrollAnimateDuration = 800
 const pauseBeforeScroll = 300
 
@@ -224,19 +224,17 @@ function createNewQuestion() {
     radioButton.addEventListener('change', () => {
       // Занесение гидролата в список
       if (radioButton.id < counterForIdRadioButton) {
+        // Класс для определения положительного ответа
+        radioButton.classList.add('done')
+
         const selectGidrolatName = questionDict[question.textContent]
         if (Array.isArray(selectGidrolatName)) {
           for (const i of selectGidrolatName) {
-            if (!(selectGidrolatList.includes(removeSpaceAndCS(i)))) {
-              selectGidrolatList.push(removeSpaceAndCS(i))
-            }
+            selectGidrolatList.push(removeSpaceAndCS(i))
           }
         } else {
-          if (!selectGidrolatList.includes(removeSpaceAndCS(selectGidrolatName))) {
-            selectGidrolatList.push(removeSpaceAndCS(selectGidrolatName))
-          }
+          selectGidrolatList.push(removeSpaceAndCS(selectGidrolatName))
         }
-        console.log(selectGidrolatList)
       } else {
         // Запрос к серверу
       }
@@ -251,12 +249,45 @@ function createNewQuestion() {
       }
     })
   }
+
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Стартовая кнопка
   const startButton = document.querySelector('.main__start-test-buttom')
+
+  // Кнопка возвращающая к предыдущему вопросу, берётся с главной страницы (там она display: none)
   window.QuestionBackButton = document.querySelector('.question__button-back')
+  // обработчик
+  QuestionBackButton.addEventListener('click', () => {
+    counterForIdQuestionSection -= 2
+    animateScroll('#' + String(counterForIdQuestionSection), 0)
+    if (counterForIdQuestionSection !== 1000) {
+      const nowSection = document.getElementById(counterForIdQuestionSection)
+      const questionText = nowSection.querySelector('.question-heading').textContent
+      let gidrolats = dataQuestions[firstQuestionAnswer][questionText]
+
+      // Удаление гидролата из списка, если он был добавлен в него после ответа на вопрос
+      const radioButtonYes = nowSection.querySelector('.done')
+      if (radioButtonYes !== null) {
+        if (Array.isArray(gidrolats)) {
+          for (let gidrolat of gidrolats) {
+            gidrolat = removeSpaceAndCS(gidrolat)
+            const gidrolatIndex = selectGidrolatList.indexOf(gidrolat)
+            selectGidrolatList.splice(gidrolatIndex, gidrolatIndex + 1)
+          }
+        } else {
+          gidrolats = removeSpaceAndCS(gidrolats)
+          const gidrolatIndex = selectGidrolatList.indexOf(gidrolats)
+          selectGidrolatList.splice(gidrolatIndex, gidrolatIndex + 1)
+        }
+      }
+      numberQuestion--
+    }
+  })
+
+  // Начало теста
   startButton.addEventListener('click', () => {
     createFirstQuestion()
     removeUserScroll()
