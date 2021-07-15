@@ -184,10 +184,10 @@ function createFirstQuestion() {
   giveIndentYAllPage(questionContainer)
 
   // Индивидуальный обработчик для первого вопроса
-  const radioButtons = document.querySelector('.variants--first-question').getElementsByClassName('variant__radioButton ')
-  for (const radioButton of radioButtons) {
-    radioButton.addEventListener('change', () => {
-      firstQuestionAnswer = radioButton.value
+  const radioButtonsLabels = document.querySelector('.variants--first-question').getElementsByClassName('variant__radioButton ')
+  for (const radioButtonsLabel of radioButtonsLabels) {
+    radioButtonsLabel.addEventListener('click', () => {
+      firstQuestionAnswer = radioButtonsLabel.value
       createNewQuestion()
       setTimeout(() => {
         const href = '#1001'
@@ -258,14 +258,14 @@ function createNewQuestion() {
 
   // обработчик для создания следующего вопроса
   const lastQuestions = document.getElementsByClassName('new-question')[document.getElementsByClassName('new-question').length - 1]
-  const lastRadioButtons = lastQuestions.getElementsByClassName('variant__radioButton')
+  const lastRadioButtonsLabels = lastQuestions.getElementsByClassName('variant__text')
 
-  for (const radioButton of lastRadioButtons) {
-    radioButton.addEventListener('change', () => {
+  for (const lastRadioButtonsLabel of lastRadioButtonsLabels) {
+    lastRadioButtonsLabel.addEventListener('click', () => {
       // Занесение гидролата в список
-      if (radioButton.id < counterForIdRadioButton) {
+      if (lastRadioButtonsLabel.textContent === 'Да') {
         // Класс для определения положительного ответа
-        radioButton.classList.add('done')
+        lastRadioButtonsLabel.classList.add('done')
 
         const selectGidrolatName = questionDict[question.textContent]
         if (Array.isArray(selectGidrolatName)) {
@@ -285,6 +285,7 @@ function createNewQuestion() {
           animateScroll(href)
         }, pauseBeforeScroll)
       } else {
+        alert(selectGidrolatList)
         // Запрос к серверу
       }
     })
