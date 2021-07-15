@@ -296,9 +296,15 @@ body {
 }
 
 .gidrolat-wrapper {
+  position: static;
   max-width: 240px;
   margin: 0 auto;
   margin-bottom: 45px;
+  z-index: 0;
+}
+
+.swiper-wrapper {
+  z-index: 0;
 }
 
 .gidrolat__heading {
@@ -311,6 +317,7 @@ body {
 }
 
 .gidrolat__text-list {
+  margin-left: 3px;
   padding-left: 15px;
   text-align: start;
   line-height: 24px;

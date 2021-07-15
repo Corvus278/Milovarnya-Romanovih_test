@@ -6,9 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style/style.css">
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <!-- <script src="js/button-scroll.js"></script> -->
   <script src="js/button-next_position.js"></script>
+  <script src="js/swiper.js"></script>
 </head>
 
 <body>
@@ -29,76 +35,182 @@
         <h3 class="final__heading-gidrolats">
           Вам подходит:
         </h3>
-        <div class="gidrolat-wrapper">
-          <div class="gidrolat__arrow-buttons">
-            <button class="gidrolat__next-button arrow-button gidrolat__next-button--left">
-              <svg class="arrow-button__svg" width="33" height="33" viewBox="0 0 33 33" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <circle class="arrow-button__background arrow-button-transition" cx="16.5" cy="16.5" r="16"
-                  fill="#FDFAF5" stroke="#983724" />
-                <path class="arrow-button__arrow arrow-button-transition" d="M9 16H25" stroke="#983724" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
-                <path class="arrow-button__arrow arrow-button-transition" d="M18 9L25 16L18 23" stroke="#983724"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-            <button class="gidrolat__next-button arrow-button gidrolat__next-button--right">
-              <svg class="arrow-button__svg" width="33" height="33" viewBox="0 0 33 33" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <circle class="arrow-button__background arrow-button-transition" cx="16.5" cy="16.5" r="16"
-                  fill="#FDFAF5" stroke="#983724" />
-                <path class="arrow-button__arrow arrow-button-transition" d="M9 16H25" stroke="#983724" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
-                <path class="arrow-button__arrow arrow-button-transition" d="M18 9L25 16L18 23" stroke="#983724"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
+        <div class="gidrolat-wrapper swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <article class="gidrolat">
+                <h2 class="gidrolat__heading">
+                  Гидролат Алое
+                </h2>
+                <img class="gidrolat__img" src="http://romylo.ru/pictures/product/big/5133_big.JPG "
+                  alt="Гидролат Алое">
+                <ul class="gidrolat__description gidrolat__text-list">
+                  <li class="gidrolat__description-item">
+                    способствует синтезу коллагена;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    тонизирует;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    увлажняет;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    успокаивает кожу после принятия солнечных ванн, при укусах насекомых и ожогах различного характера;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    освежает кожу.
+                  </li>
+                </ul>
+                <h3 class="gidrolat__use-list-heading">
+                  Как применять:
+                </h3>
+                <ul class="gidrolat__as-using-list gidrolat__text-list">
+                  <li class="girolat__as-use-item">
+                    В чистом виде как тоник для кожи;
+                  </li>
+                  <li class="girolat__as-use-item">
+                    Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.
+                  </li>
+                  <li class="girolat__as-use-item">
+                    В качестве обогащающего компонента в масках для лица: смешать гидролат с белой или розовой глиной
+                    или
+                    порошковой маской. Нанести на лицо на 10-15 минут.
+                  </li>
+                  <li class="girolat__as-use-item">
+                    В виде косметического льда для подтяжки кожи, сужения пор, уменьшения гиперсекреции кожи.
+                  </li>
+                </ul>
+                <p class="gidrolat__more-info">
+                  Более подробно по <a class="gidrolat__more-info-link link"
+                    href="http://romylo.ru/products/gidrolat-aloe-1" target="_blank">ссылке</a>
+                </p>
+              </article>
+            </div>
+            <!-- Второй гидролат для примера -->
+            <div class="swiper-slide">
+              <article class="gidrolat">
+                <h2 class="gidrolat__heading">
+                  Гидролат Алое
+                </h2>
+                <img class="gidrolat__img" src="http://romylo.ru/pictures/product/big/5133_big.JPG "
+                  alt="Гидролат Алое">
+                <ul class="gidrolat__description gidrolat__text-list">
+                  <li class="gidrolat__description-item">
+                    способствует синтезу коллагена;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    тонизирует;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    увлажняет;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    успокаивает кожу после принятия солнечных ванн, при укусах насекомых и ожогах различного характера;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    освежает кожу.
+                  </li>
+                </ul>
+                <h3 class="gidrolat__use-list-heading">
+                  Как применять:
+                </h3>
+                <ul class="gidrolat__as-using-list gidrolat__text-list">
+                  <li class="girolat__as-use-item">
+                    В чистом виде как тоник для кожи;
+                  </li>
+                  <li class="girolat__as-use-item">
+                    Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.
+                  </li>
+                  <li class="girolat__as-use-item">
+                    В качестве обогащающего компонента в масках для лица: смешать гидролат с белой или розовой глиной
+                    или
+                    порошковой маской. Нанести на лицо на 10-15 минут.
+                  </li>
+                  <li class="girolat__as-use-item">
+                    В виде косметического льда для подтяжки кожи, сужения пор, уменьшения гиперсекреции кожи.
+                  </li>
+                </ul>
+                <p class="gidrolat__more-info">
+                  Более подробно по <a class="gidrolat__more-info-link link"
+                    href="http://romylo.ru/products/gidrolat-aloe-1" target="_blank">ссылке</a>
+                </p>
+              </article>
+            </div>
+            <div class="swiper-slide">
+              <article class="gidrolat">
+                <h2 class="gidrolat__heading">
+                  Гидролат Алое
+                </h2>
+                <img class="gidrolat__img" src="http://romylo.ru/pictures/product/big/5133_big.JPG "
+                  alt="Гидролат Алое">
+                <ul class="gidrolat__description gidrolat__text-list">
+                  <li class="gidrolat__description-item">
+                    способствует синтезу коллагена;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    тонизирует;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    увлажняет;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    успокаивает кожу после принятия солнечных ванн, при укусах насекомых и ожогах различного характера;
+                  </li>
+                  <li class="gidrolat__description-item">
+                    освежает кожу.
+                  </li>
+                </ul>
+                <h3 class="gidrolat__use-list-heading">
+                  Как применять:
+                </h3>
+                <ul class="gidrolat__as-using-list gidrolat__text-list">
+                  <li class="girolat__as-use-item">
+                    В чистом виде как тоник для кожи;
+                  </li>
+                  <li class="girolat__as-use-item">
+                    Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.
+                  </li>
+                  <li class="girolat__as-use-item">
+                    В качестве обогащающего компонента в масках для лица: смешать гидролат с белой или розовой глиной
+                    или
+                    порошковой маской. Нанести на лицо на 10-15 минут.
+                  </li>
+                  <li class="girolat__as-use-item">
+                    В виде косметического льда для подтяжки кожи, сужения пор, уменьшения гиперсекреции кожи.
+                  </li>
+                </ul>
+                <p class="gidrolat__more-info">
+                  Более подробно по <a class="gidrolat__more-info-link link"
+                    href="http://romylo.ru/products/gidrolat-aloe-1" target="_blank">ссылке</a>
+                </p>
+              </article>
+            </div>
           </div>
-          <article class="gidrolat">
-            <h2 class="gidrolat__heading">
-              Гидролат Алое
-            </h2>
-            <img class="gidrolat__img" src="http://romylo.ru/pictures/product/big/5133_big.JPG " alt="Гидролат Алое">
-            <ul class="gidrolat__description gidrolat__text-list">
-              <li class="gidrolat__description-item">
-                способствует синтезу коллагена;
-              </li>
-              <li class="gidrolat__description-item">
-                тонизирует;
-              </li>
-              <li class="gidrolat__description-item">
-                увлажняет;
-              </li>
-              <li class="gidrolat__description-item">
-                успокаивает кожу после принятия солнечных ванн, при укусах насекомых и ожогах различного характера;
-              </li>
-              <li class="gidrolat__description-item">
-                освежает кожу.
-              </li>
-            </ul>
-            <h3 class="gidrolat__use-list-heading">
-              Как применять:
-            </h3>
-            <ul class="gidrolat__as-using-list gidrolat__text-list">
-              <li class="girolat__as-use-item">
-                В чистом виде как тоник для кожи;
-              </li>
-              <li class="girolat__as-use-item">
-                Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.
-              </li>
-              <li class="girolat__as-use-item">
-                В качестве обогащающего компонента в масках для лица: смешать гидролат с белой или розовой глиной или
-                порошковой маской. Нанести на лицо на 10-15 минут.
-              </li>
-              <li class="girolat__as-use-item">
-                В виде косметического льда для подтяжки кожи, сужения пор, уменьшения гиперсекреции кожи.
-              </li>
-            </ul>
-            <p class="gidrolat__more-info">
-              Более подробно по <a class="gidrolat__more-info-link link"
-                href="http://romylo.ru/products/gidrolat-aloe-1" target="_blank">ссылке</a>
-            </p>
-          </article>
+          <div class="gidrolat__arrow-buttons">
+          </div>
+
+          <button class="gidrolat__next-button arrow-button gidrolat__next-button--left">
+            <svg class="arrow-button__svg" width="33" height="33" viewBox="0 0 33 33" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle class="arrow-button__background arrow-button-transition" cx="16.5" cy="16.5" r="16" fill="#FDFAF5"
+                stroke="#983724" />
+              <path class="arrow-button__arrow arrow-button-transition" d="M9 16H25" stroke="#983724" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path class="arrow-button__arrow arrow-button-transition" d="M18 9L25 16L18 23" stroke="#983724"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <button class="gidrolat__next-button arrow-button gidrolat__next-button--right">
+            <svg class="arrow-button__svg" width="33" height="33" viewBox="0 0 33 33" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle class="arrow-button__background arrow-button-transition" cx="16.5" cy="16.5" r="16" fill="#FDFAF5"
+                stroke="#983724" />
+              <path class="arrow-button__arrow arrow-button-transition" d="M9 16H25" stroke="#983724" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path class="arrow-button__arrow arrow-button-transition" d="M18 9L25 16L18 23" stroke="#983724"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
         </div>
         <div class="final__bottom-text">
           <p class="final__present-text">
