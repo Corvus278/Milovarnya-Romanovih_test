@@ -22,8 +22,6 @@ function removeSpaceAndCS(string) {
 
 
 function animateScroll(href, removeLastQuestion = false) {
-  console.log(`${counterForIdQuestionSection} - counter`)
-  console.log(`${href} - href`)
   jQuery(document).ready(function ($) {
     $('html, body').animate({
       scrollTop: $(href).offset().top
