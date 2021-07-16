@@ -47,6 +47,7 @@ function createGidrolatArticle(gidrolatInfo) {
 
   pEndText.textContent = 'Более подробно по '
   aMoreLink.href = moreLink
+  aMoreLink.target = '_blank'
   aMoreLink.textContent = 'ссылке'
 
   // сборка элементов
