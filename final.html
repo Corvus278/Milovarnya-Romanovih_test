@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Подбери себе гидролат</title>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style/style.css">
@@ -21,7 +21,7 @@
 <body>
   <div class="content-wrapper">
     <header class="header index-header">
-      <a class="header__logo-link" href="http://romylo.ru/">
+      <a class="header__logo-link" href="http://romylo.ru/" target="_blank">
         <img class="header__logo" src="img/logo_gorizontal.png" alt="Мыловарня Романовых">
       </a>
     </header>
@@ -218,6 +218,18 @@
             Он придёт к вам на электронную почту, как только вы заполните форму:
           </p>
         </div>
+        <form action="" class="feedback-form">
+          <div class="feedback-form__input-container">
+            <input class="feedback-form__input feedback-form__input--name" placeholder="Имя" type="name" name="name">
+            <input class="feedback-form__input feedback-form__input--email" placeholder="E-mail" type="email"
+              name="email">
+          </div>
+          <div class="feedback-form__checkbox-container">
+            <input class="feedback-form__checkbox" type="checkbox" id="check">
+            <label class="feedback-form__check-label" for="check">Согласен на обработку данных</label>
+          </div>
+          <button class="feedback-form__submit" type="submit">Отправить</button>
+        </form>
       </div>
     </main>
   </div>
