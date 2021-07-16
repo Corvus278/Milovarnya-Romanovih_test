@@ -1,4 +1,4 @@
-function makeElement(nameElement, className = nameElement) {
+function createElement(nameElement, className = nameElement) {
   let element = document.createElement(nameElement)
   if (Array.isArray(className)) {
     element.classList.add(...className)
@@ -9,7 +9,7 @@ function makeElement(nameElement, className = nameElement) {
 }
 
 
-function createGidrolatArticle(baseText, gidrolatInfo) {
+function createGidrolatArticle(gidrolatInfo) {
   // информация о гидролате
   const name = gidrolatInfo.name
   const imgUrl = gidrolatInfo.imgUrl
@@ -19,7 +19,7 @@ function createGidrolatArticle(baseText, gidrolatInfo) {
 
   // ДОМ-элементы
   const article = createElement('article', 'gidrolat')
-  const h2Heading = createElement('article', 'gidrolat__heading')
+  const h2Heading = createElement('h2', 'gidrolat__heading')
   const img = createElement('img', 'gidrolat__img')
   const ulDescription = createElement('ul', ['gidrolat__description', 'gidrolat__text-list'])
   const h3HowToUse = createElement('h3', 'gidrolat__use-list-heading')
@@ -47,6 +47,7 @@ function createGidrolatArticle(baseText, gidrolatInfo) {
 
   pEndText.textContent = 'Более подробно по '
   aMoreLink.href = moreLink
+  aMoreLink.textContent = 'ссылке'
 
   // сборка элементов
   pEndText.append(aMoreLink)
@@ -56,7 +57,7 @@ function createGidrolatArticle(baseText, gidrolatInfo) {
 }
 
 
-function gidrolatWrapper(gidrolatArticleList) {
+function createGidrolatWrapper(gidrolatArticleList) {
   const commonWrapper = createElement('div', 'swiper-wrapper')
   for (const gidrolatArticle of gidrolatArticleList) {
     const gidrolatWrapper = createElement('div', 'swiper-slide')
@@ -66,3 +67,50 @@ function gidrolatWrapper(gidrolatArticleList) {
 
   return commonWrapper
 }
+
+
+function addGidrolats(gidrolatInfoList) {
+  const gidrolatWrapper = document.querySelector('.gidrolat-wrapper')
+  const gidrolatArticleList = []
+  if (Array.isArray(gidrolatInfoList)) {
+    for (const gidrolatInfo of gidrolatInfoList) {
+      gidrolatArticleList.push(createGidrolatArticle(gidrolatInfo))
+    }
+  } else {
+    gidrolatArticleList.push(createGidrolatArticle(gidrolatInfoList))
+  }
+
+  gidrolatWrapper.append(createGidrolatWrapper(gidrolatArticleList))
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const gidrolat = {
+    name: 'Гидролат Алое',
+    imgUrl: 'http://romylo.ru/pictures/product/big/5133_big.JPG',
+    description: ['способствует синтезу коллагена;', 'тонизирует;'],
+    howToUse: ['В чистом виде как тоник для кожи', 'Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.'],
+    moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
+  }
+
+
+  const gidrolats = [
+    {
+      name: 'Гидролат Алое',
+      imgUrl: 'http://romylo.ru/pictures/product/big/5133_big.JPG',
+      description: ['способствует синтезу коллагена;', 'тонизирует;'],
+      howToUse: ['В чистом виде как тоник для кожи', 'Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.'],
+      moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
+    },
+    {
+      name: 'Гидролат Алое',
+      imgUrl: 'http://romylo.ru/pictures/product/big/5133_big.JPG',
+      description: ['способствует синтезу коллагена;', 'тонизирует;'],
+      howToUse: ['В чистом виде как тоник для кожи', 'Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.'],
+      moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
+    }
+  ]
+
+
+  addGidrolats(gidrolats)
+})
