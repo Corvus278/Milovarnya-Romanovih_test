@@ -394,7 +394,7 @@ body {
   padding: 5px 10px;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 1px solid #000;
   font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   transition: border-color .2s;
@@ -431,7 +431,7 @@ body {
   width: 14px;
   height: 14px;
   left: 0;
-  bottom: 4px;
+  bottom: 3px;
   background-image: url(/img/checkbox--defolt.svg);
   background-repeat: no-repeat;
 }
