@@ -119,7 +119,7 @@ function giveIndentYAllPage(element) {
 
   let indent = (windowHeight - elementHeight) / 2
   element.style.paddingTop = String(indent) + 'px'
-  element.style.marginBottom = String(indent) + 'px'
+  element.style.paddingBottom = String(indent) + 'px'
 }
 
 
@@ -166,6 +166,7 @@ function createFirstQuestion() {
   const ul = makeList(elements, ['variants', 'variants--first-question'], 'variant')
   const container = makeElement('div', ['container', 'container--question'])
   const questionHeading = makeElement('h2', 'question-heading')
+  const decorContainer = makeElement('div', 'decor-container')
 
   // id для скролла
   section.id = counterForIdQuestionSection
@@ -174,15 +175,17 @@ function createFirstQuestion() {
   questionHeading.textContent = 'Пожалуйста, укажите ваш тип кожи:'
   container.append(questionHeading)
   container.append(ul)
+  decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top']), makeElement('div', ['decor', 'decor--right-top']), makeElement('div', ['decor', 'decor--right-bottom']), makeElement('div', ['decor', 'decor--left-bottom'])])
   section.append(container)
+  section.append(decorContainer)
   document.querySelector('main').append(section)
 
   // Вопрос получает отступы для занятия всей страницы
-  const questionContainer = document.querySelector('.container--question')
+  const questionContainer = document.querySelector('.first-question-page')
   giveIndentYAllPage(questionContainer)
 
   // Индивидуальный обработчик для первого вопроса
-  const radioButtonsLabels = document.querySelector('.variants--first-question').getElementsByClassName('variant__radioButton ')
+  const radioButtonsLabels = document.querySelector('.variants--first-question').getElementsByClassName('variant__radioButton')
   for (const radioButtonsLabel of radioButtonsLabels) {
     radioButtonsLabel.addEventListener('click', () => {
       firstQuestionAnswer = radioButtonsLabel.value
@@ -203,6 +206,7 @@ function createNewQuestion() {
   const varianWithButtonY = makeAnswerVariant('Да', 'new question')
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
+  const decorContainer = makeElement('div', 'decor-container')
 
   // Кнопка для возвращения к предыдущему вопросу
   const dupQuestionBackButton = questionBackButton.cloneNode(true)
@@ -248,10 +252,12 @@ function createNewQuestion() {
   container.append(answers)
   container.append(dupQuestionBackButton)
   section.append(container)
+  decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top', 'myata-bolshoi_left-top']), makeElement('div', ['decor', 'decor--right-top']), makeElement('div', ['decor', 'decor--right-bottom']), makeElement('div', ['decor', 'decor--left-bottom'])])
+  section.append(decorContainer)
   document.querySelector('main').append(section)
 
   // Вопрос получает отступы для занятия всей страницы
-  const questionContainer = document.getElementsByClassName('container--question')[document.getElementsByClassName('container--question').length - 1]
+  const questionContainer = document.getElementsByClassName('new-question')[document.getElementsByClassName('new-question').length - 1]
   giveIndentYAllPage(questionContainer)
 
   // обработчик для создания следующего вопроса

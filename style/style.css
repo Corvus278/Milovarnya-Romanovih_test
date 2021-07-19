@@ -133,7 +133,15 @@ body {
   color: var(--main-theme);
 }
 
-/* main question */
+/* Questions */
+.new-question {
+  position: relative;
+}
+
+.first-question-page {
+  position: relative;
+}
+
 .question-heading {
   margin: 0 auto;
   margin-bottom: 35px;
@@ -191,7 +199,7 @@ body {
 }
 
 .variant__text:hover {
-  color: var(--logo-brown)
+  color: var(--logo-brown);
 }
 
 .container--question {
@@ -451,6 +459,29 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   cursor: pointer;
 }
+
+/* ------- Decor -------*/
+.decor {
+  position: absolute;
+  outline: 1px red;
+  background-repeat: no-repeat;
+}
+
+/* left-top */
+.decor--left-top {
+  left: 0px;
+  top: 70px;
+}
+
+.myata-bolshoi_left-top {
+  background-image: url(/img/myata-bolshoi.png);
+  width: 58px;
+  height: 95px;
+  top: 67px;
+  left: -8px;
+  transform: rotate(180deg)
+}
+
 
 @media (min-width: 640px) {
   .container {
