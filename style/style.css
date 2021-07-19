@@ -11,10 +11,16 @@
   --logo-brown: #983724;
   --arrow-button_size: 40px;
   --arrow-button_margin: 10px;
+  --header-height: 70px;
+  --scroll-width: 0px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.new-question {
+  overflow:hidden;
 }
 
 img {
@@ -48,10 +54,6 @@ body {
   background-color: #FDFAF5;
 }
 
-.content-wrapper {
-  margin: 0px 8px;
-}
-
 /* Header */
 .header {
   position: fixed;
@@ -61,7 +63,7 @@ body {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 70px;
+  height: var(--header-height);
   background-color: var(--main-theme);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   z-index: 1;
@@ -81,7 +83,8 @@ body {
 .container {
   max-width: 320px;
   padding: 0px 5px;
-  margin: 0px auto;
+  padding-right: var(--scroll-width);
+  margin: 8px auto;
   text-align: center;
 }
 
@@ -463,25 +466,155 @@ body {
 /* ------- Decor -------*/
 .decor {
   position: absolute;
-  outline: 1px red;
   background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* left-top */
 .decor--left-top {
   left: 0px;
-  top: 70px;
+  top: var(--header-height);
 }
 
 .myata-bolshoi_left-top {
   background-image: url(/img/myata-bolshoi.png);
   width: 58px;
   height: 95px;
-  top: 67px;
+  top: calc(var(--header-height) - 3px);
   left: -8px;
   transform: rotate(180deg)
 }
 
+.venochek-roza-perets_left-top {
+  background-image: url(/img/venochek-roza-perets.png);
+  width: 65px;
+  height: 97px;
+  transform: rotate(180deg);
+  top: calc(var(--header-height) - 5px);
+  left: -8px
+}
+
+.listvennitsa-ekhinatse-reverse_left-top {
+  background-image: url(/img/listvennitsa-ekhinatse_reverse.png);
+  width: 78px;
+  height: 94px;
+  transform: rotate(180deg);
+  /* top: calc(var(--header-height) - 5px); */
+  left: -7px
+}
+
+.kolokolchick_left-top {
+  background-image: url(/img/kolokolchick.png);
+  width: 81px;
+  height: 51px;
+  transform: rotate(-90deg);
+  top: calc(var(--header-height) + 15px);
+  left: -25px
+}
+
+/* right top */
+.decor--right-top {
+  top: var(--header-height);
+  right: 0px;
+}
+
+.dushitsa-shalfei_right-top {
+  background-image: url(/img/dushitsa-shalfei.png);
+  width: 57px;
+  height: 85px;
+  transform: rotate(180deg);
+  top: calc(var(--header-height) - 7px);
+  right: -25px
+}
+
+.listvennitsa-ekhinatse_right-top {
+  background-image: url(/img/listvennitsa-ekhinatse.png);
+  width: 78px;
+  height: 94px;
+  transform: rotate(180deg);
+  top: calc(var(--header-height) + 0px);
+}
+
+.myata-limon_right-top {
+  background-image: url(/img/myata-limon.png);
+  width: 74px;
+  height: 112px;
+  transform: rotate(180deg);
+  top: calc(var(--header-height) - 5px);
+  right: 0px;
+}
+
+/* right bottom */
+.decor--right-bottom {
+  bottom: 0px;
+  right: 0px;
+}
+
+.dushitsa-shalfei_right-bottom {
+  background-image: url(/img/dushitsa-shalfei.png);
+  width: 57px;
+  height: 85px;
+  bottom: -8px;
+  right: -10px;
+}
+
+.listvennitsa-ekhinatse_right-bottom {
+  background-image: url(/img/listvennitsa-ekhinatse.png);
+  width: 78px;
+  height: 94px;
+  bottom: 0px;
+  right: -6px;
+}
+
+.myata-limon_right-bottom {
+  background-image: url(/img/myata-limon.png);
+  width: 74px;
+  height: 112px;
+  bottom: -5px;
+  right: -2px;
+}
+
+.rose_right-bottom {
+  background-image: url(/img/rose.png);
+  width: 88px;
+  height: 86px;
+  right: -10px;
+}
+
+/* left-bottom */
+.decor--left-bottom {
+  left: 0px;
+  bottom: 0px;
+}
+
+.myata-bolshoi_left-bottom {
+  background-image: url(/img/myata-bolshoi.png);
+  width: 58px;
+  height: 95px;
+  left: -5px;
+}
+
+.listvennitsa-ekhinatse-reverse_left-bottom {
+  background-image: url(/img/listvennitsa-ekhinatse_reverse.png);
+  width: 78px;
+  height: 94px;
+  left: -7px
+}
+
+.venochek-roza-perets_left-bottom {
+  background-image: url(/img/venochek-roza-perets.png);
+  width: 65px;
+  height: 97px;
+  left: -7px;
+  bottom: -4px;
+}
+
+.rose_left-bottom {
+  background-image: url(/img/rose.png);
+  width: 88px;
+  height: 86px;
+  left: -22px;
+}
 
 @media (min-width: 640px) {
   .container {

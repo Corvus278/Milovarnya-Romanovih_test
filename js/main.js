@@ -145,9 +145,8 @@ function scrollWidth() {
 
 
 function removeUserScroll() {
-  if (window.scrollY !== 0) {
-    document.body.style.paddingRight = String(scrollWidth()) + 'px'
-  }
+  const scrollW = scrollWidth()
+  document.querySelector('html').style.setProperty('--scroll-width', String(scrollW) + 'px')
   document.body.style.overflow = "hidden"
 }
 
@@ -252,7 +251,7 @@ function createNewQuestion() {
   container.append(answers)
   container.append(dupQuestionBackButton)
   section.append(container)
-  decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top', 'myata-bolshoi_left-top']), makeElement('div', ['decor', 'decor--right-top']), makeElement('div', ['decor', 'decor--right-bottom']), makeElement('div', ['decor', 'decor--left-bottom'])])
+  decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top', 'listvennitsa-ekhinatse-reverse_left-top']), makeElement('div', ['decor', 'decor--right-top', 'myata-limon_right-top']), makeElement('div', ['decor', 'decor--right-bottom', 'myata-limon_right-bottom']), makeElement('div', ['decor', 'decor--left-bottom', 'venochek-roza-perets_left-bottom'])])
   section.append(decorContainer)
   document.querySelector('main').append(section)
 
