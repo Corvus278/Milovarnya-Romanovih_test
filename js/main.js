@@ -174,7 +174,7 @@ function createFirstQuestion() {
   questionHeading.textContent = 'Пожалуйста, укажите ваш тип кожи:'
   container.append(questionHeading)
   container.append(ul)
-  decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top']), makeElement('div', ['decor', 'decor--right-top']), makeElement('div', ['decor', 'decor--right-bottom']), makeElement('div', ['decor', 'decor--left-bottom'])])
+  decorContainer.append(makeElement('div', ['decor', 'decor--left-top', 'kolokolchick_left-top']))
   section.append(container)
   section.append(decorContainer)
   document.querySelector('main').append(section)
