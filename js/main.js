@@ -151,6 +151,48 @@ function removeUserScroll() {
 }
 
 
+function giveRandomNumber(max, min = 0) {
+  const range = Math.abs(max - min)
+  return Math.round(Math.random() * range) + min
+}
+
+
+function addDecor(element) {
+  const allDecorClasses = {
+    leftTopRightBottom: {
+      common1: 'decor--left-top',
+      individual1: ['myata-bolshoi_left-top', 'venochek-roza-perets_left-top', 'listvennitsa-ekhinatse-reverse_left-top', 'kolokolchick_left-top'],
+      common2: 'decor--right-bottom',
+      individual2: ['dushitsa-shalfei_right-bottom', 'listvennitsa-ekhinatse_right-bottom', 'myata-limon_right-bottom', 'rose_right-bottom']
+    },
+    rightTopLeftBottom: {
+      common1: 'decor--right-top',
+      individual1: ['dushitsa-shalfei_right-top', 'listvennitsa-ekhinatse_right-top', 'myata-limon_right-top'],
+      common2: 'decor--left-bottom',
+      individual2: ['myata-bolshoi_left-bottom', 'listvennitsa-ekhinatse-reverse_left-bottom', 'venochek-roza-perets_left-bottom', 'rose_left-bottom']
+    }
+  }
+
+  // Выбор с каких сторон страницы будет декор
+  const selectDecorSide = allDecorClasses[Object.keys(allDecorClasses)[giveRandomNumber(Object.keys(allDecorClasses).length - 1)]]
+
+  // Выбор классов
+  const common1 = selectDecorSide['common1']
+  const individual1 = selectDecorSide['individual1'][giveRandomNumber(selectDecorSide['individual1'].length - 1)]
+  const common2 = selectDecorSide['common2']
+  const individual2 = selectDecorSide['individual2'][giveRandomNumber(selectDecorSide['individual2'].length - 1)]
+
+  // создание блоков с декором
+  const div1 = makeElement('div', ['decor', common1, individual1])
+  const div2 = makeElement('div', ['decor', common2, individual2])
+  const commonCont = makeElement('div', 'decor-container')
+
+  // добавление блоков к элементу
+  commonCont.append(...[div1, div2])
+  element.append(commonCont)
+}
+
+
 function createFirstQuestion() {
   // Создание вопроса
   const variants = dataQuestions['firstQuestion']
@@ -205,7 +247,6 @@ function createNewQuestion() {
   const varianWithButtonY = makeAnswerVariant('Да', 'new question')
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
-  const decorContainer = makeElement('div', 'decor-container')
 
   // Кнопка для возвращения к предыдущему вопросу
   const dupQuestionBackButton = questionBackButton.cloneNode(true)
@@ -251,8 +292,10 @@ function createNewQuestion() {
   container.append(answers)
   container.append(dupQuestionBackButton)
   section.append(container)
-  decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top', 'listvennitsa-ekhinatse-reverse_left-top']), makeElement('div', ['decor', 'decor--right-top', 'myata-limon_right-top']), makeElement('div', ['decor', 'decor--right-bottom', 'myata-limon_right-bottom']), makeElement('div', ['decor', 'decor--left-bottom', 'venochek-roza-perets_left-bottom'])])
-  section.append(decorContainer)
+  addDecor(section)
+
+  // decorContainer.append(...[makeElement('div', ['decor', 'decor--left-top', 'listvennitsa-ekhinatse-reverse_left-top']), makeElement('div', ['decor', 'decor--right-top', 'myata-limon_right-top']), makeElement('div', ['decor', 'decor--right-bottom', 'myata-limon_right-bottom']), makeElement('div', ['decor', 'decor--left-bottom', 'venochek-roza-perets_left-bottom'])])
+  // section.append(decorContainer)
   document.querySelector('main').append(section)
 
   // Вопрос получает отступы для занятия всей страницы
@@ -298,6 +341,7 @@ function createNewQuestion() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  // setInterval(() => { console.log(giveRandomNumber(8)) }, 200)
   // Стартовая кнопка
   const startButton = document.querySelector('.main__start-test-buttom')
 

@@ -523,7 +523,6 @@ body {
   height: 85px;
   transform: rotate(180deg);
   top: calc(var(--header-height) - 7px);
-  right: -25px
 }
 
 .listvennitsa-ekhinatse_right-top {
