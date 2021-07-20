@@ -331,6 +331,15 @@ function createNewQuestion() {
           animateScroll(href)
         }, pauseBeforeScroll)
       } else {
+        // Если юзер не ответил положительно ни на один вопрос, ему будет предложено первые три гидролата, подходящие его коже
+        if (selectGidrolatList.length === 0) {
+          const firstAnswerQuestions = dataQuestions[firstQuestionAnswer]
+          const firstAnswerGidrolats = Object.values(firstAnswerQuestions)
+
+          firstAnswerGidrolats.slice(0, 3).forEach((element) => {
+            selectGidrolatList.push(removeSpaceAndCS(element))
+          })
+        }
         alert(selectGidrolatList)
         // Запрос к серверу
       }
