@@ -82,6 +82,27 @@ function addGidrolats(gidrolatInfoList) {
   }
 
   gidrolatWrapper.append(createGidrolatWrapper(gidrolatArticleList))
+
+  // Позиционирование кнопок
+  const gidrolatImg = document.querySelector('.gidrolat__img')
+  gidrolatImg.addEventListener('load', () => {
+    givButtonPosition()
+  })
+
+  window.addEventListener('scroll', () => {
+    givButtonPosition()
+  })
+
+  window.addEventListener('resize', () => {
+    givButtonPosition()
+  })
+
+  window.addEventListener("orientationchange", () => {
+    givButtonPosition()
+  })
+
+  // Активация слайдера
+  startSwiper()
 }
 
 
@@ -113,5 +134,5 @@ document.addEventListener('DOMContentLoaded', () => {
   ]
 
 
-  addGidrolats(gidrolats)
+  // addGidrolats(gidrolats)
 })

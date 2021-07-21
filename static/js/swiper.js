@@ -25,8 +25,3 @@ function startSwiper() {
     swiper.slideNext()
   })
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  startSwiper()
-})

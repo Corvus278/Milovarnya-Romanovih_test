@@ -21,10 +21,10 @@ function removeSpaceAndCS(string) {
 }
 
 
-function animateScroll(href, removeLastQuestion = false, removeFirstPage = false) {
+function animateScroll(href, removeLastQuestion = false, removeFirstPage = false, scrollShiftOfTopHref = 0) {
   jQuery(document).ready(function ($) {
     $('html, body').animate({
-      scrollTop: $(href).offset().top
+      scrollTop: $(href).offset().top + scrollShiftOfTopHref
     }, {
       duration: scrollAnimateDuration,   // по умолчанию «400»
       // easing: "linear" // по умолчанию «swing»
@@ -44,7 +44,6 @@ function animateScroll(href, removeLastQuestion = false, removeFirstPage = false
   // Удаление всего кроме секции с финальной страницей
   if (removeFirstPage) {
     const sections = Array.from(document.querySelectorAll('section'))
-    console.log(`${typeof sections} - ${sections}`)
     setTimeout(() => {
       sections.forEach((element, i, arr) => {
         if (i !== arr.length - 1) {
@@ -363,10 +362,32 @@ function createNewQuestion() {
         finalPage.id = ++counterForIdQuestionSection
         const mainTeg = document.querySelector('main')
         mainTeg.append(finalPage)
+
+        const gidrolats = [
+          {
+            name: 'Гидролат Алое',
+            imgUrl: 'http://romylo.ru/pictures/product/big/5133_big.JPG',
+            description: ['способствует синтезу коллагена;', 'тонизирует;'],
+            howToUse: ['В чистом виде как тоник для кожи', 'Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.'],
+            moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
+          },
+          {
+            name: 'Гидролат Алое',
+            imgUrl: 'http://romylo.ru/pictures/product/big/5133_big.JPG',
+            description: ['способствует синтезу коллагена;', 'тонизирует;'],
+            howToUse: ['В чистом виде как тоник для кожи', 'Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания.'],
+            moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
+          }
+        ]
+        addGidrolats(gidrolats)
+
         setTimeout(() => {
           const href = '#' + String(counterForIdQuestionSection)
-          animateScroll(href, false, true)
+          const mainMarginTop = parseInt(getComputedStyle(document.querySelector('main')).marginTop)
+          console.log(mainMarginTop)
+          animateScroll(href, false, true, -mainMarginTop)
         }, pauseBeforeScroll)
+        document.body.style.overflow = ""
       }
     })
   }

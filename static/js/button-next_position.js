@@ -19,22 +19,3 @@ function givButtonPosition() {
     button.style.setProperty('--button_position-Y', String(buttonPositionY))
   }
 }
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Таймаут для ожидания применения css стилей
-  const gidrolatImg = document.querySelector('.gidrolat__img')
-  gidrolatImg.addEventListener('load', () => {
-    givButtonPosition()
-  })
-
-  // Изменение размера экрана
-  window.addEventListener('resize', () => {
-    givButtonPosition()
-  })
-
-  // Изменение ориентации экрана
-  window.addEventListener("orientationchange", () => {
-    givButtonPosition()
-  })
-})
