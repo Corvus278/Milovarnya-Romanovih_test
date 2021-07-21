@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Georgia';
-  src: url('/fonts/9605-webfont.woff2') format('woff2'),
-       url('/fonts/9605-webfont.woff') format('woff');
+  src: url('/static/fonts/9605-webfont.woff2') format('woff2'),
+       url('/static/fonts/9605-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -192,12 +192,12 @@ body {
   left: 0;
   width: 18px;
   height: 18px;
-  background: url(/img/radio-button--defolt.svg) 0 0 no-repeat;
+  background: url(/static/img/radio-button--defolt.svg) 0 0 no-repeat;
   transition: background-image 0.2s;
 }
 
 .variant__text:hover::before {
-  background: url('/img/radio-button--hover.svg') 0 0 no-repeat;
+  background: url(/static/img/radio-button--hover.svg) 0 0 no-repeat;
 }
 
 .variant__text:hover {
@@ -219,7 +219,7 @@ body {
 
 /* RB checked */
 .variant__radioButton:checked + .variant__text::before {
-  background: url('/img/radio-button--checked.svg') 0 0 no-repeat;
+  background: url(/static/img/radio-button--checked.svg) 0 0 no-repeat;
 }
 
 .question-heading--new-question {
@@ -375,7 +375,7 @@ body {
   bottom: 6px;
   width: 26px;
   height: 16px;
-  background: url(/img/present.svg) right no-repeat;
+  background: url(/static/img/present.svg) right no-repeat;
 }
 
 .final__form-description {
@@ -442,13 +442,13 @@ body {
   height: 14px;
   left: 0;
   bottom: 3px;
-  background-image: url(/img/checkbox--defolt.svg);
+  background-image: url(/static/img/checkbox--defolt.svg);
   background-repeat: no-repeat;
 }
 
 .feedback-form__checkbox:checked +
 .feedback-form__check-label::before {
-  background-image: url(/img/checkbox--checked.svg)
+  background-image: url(/static/img/checkbox--checked.svg)
 }
 
 .feedback-form__submit {
@@ -476,7 +476,7 @@ body {
 }
 
 .myata-bolshoi_left-top {
-  background-image: url(/img/myata-bolshoi.png);
+  background-image: url(/static/img/myata-bolshoi.png);
   width: 58px;
   height: 95px;
   top: calc(var(--header-height) - 3px);
@@ -485,7 +485,7 @@ body {
 }
 
 .venochek-roza-perets_left-top {
-  background-image: url(/img/venochek-roza-perets.png);
+  background-image: url(/static/img/venochek-roza-perets.png);
   width: 65px;
   height: 97px;
   transform: rotate(180deg);
@@ -494,7 +494,7 @@ body {
 }
 
 .listvennitsa-ekhinatse-reverse_left-top {
-  background-image: url(/img/listvennitsa-ekhinatse_reverse.png);
+  background-image: url(/static/img/listvennitsa-ekhinatse_reverse.png);
   width: 78px;
   height: 94px;
   transform: rotate(180deg);
@@ -503,7 +503,7 @@ body {
 }
 
 .kolokolchick_left-top {
-  background-image: url(/img/kolokolchick.png);
+  background-image: url(/static/img/kolokolchick.png);
   width: 81px;
   height: 51px;
   transform: rotate(-90deg);
@@ -518,7 +518,7 @@ body {
 }
 
 .dushitsa-shalfei_right-top {
-  background-image: url(/img/dushitsa-shalfei.png);
+  background-image: url(/static/img/dushitsa-shalfei.png);
   width: 57px;
   height: 85px;
   transform: rotate(180deg);
@@ -526,7 +526,7 @@ body {
 }
 
 .listvennitsa-ekhinatse_right-top {
-  background-image: url(/img/listvennitsa-ekhinatse.png);
+  background-image: url(/static/img/listvennitsa-ekhinatse.png);
   width: 78px;
   height: 94px;
   transform: rotate(180deg);
@@ -534,7 +534,7 @@ body {
 }
 
 .myata-limon_right-top {
-  background-image: url(/img/myata-limon.png);
+  background-image: url(/static/img/myata-limon.png);
   width: 74px;
   height: 112px;
   transform: rotate(180deg);
@@ -549,7 +549,7 @@ body {
 }
 
 .dushitsa-shalfei_right-bottom {
-  background-image: url(/img/dushitsa-shalfei.png);
+  background-image: url(/static/img/dushitsa-shalfei.png);
   width: 57px;
   height: 85px;
   bottom: -8px;
@@ -557,7 +557,7 @@ body {
 }
 
 .listvennitsa-ekhinatse_right-bottom {
-  background-image: url(/img/listvennitsa-ekhinatse.png);
+  background-image: url(/static/img/listvennitsa-ekhinatse.png);
   width: 78px;
   height: 94px;
   bottom: 0px;
@@ -565,7 +565,7 @@ body {
 }
 
 .myata-limon_right-bottom {
-  background-image: url(/img/myata-limon.png);
+  background-image: url(/static/img/myata-limon.png);
   width: 74px;
   height: 112px;
   bottom: -5px;
@@ -573,7 +573,7 @@ body {
 }
 
 .rose_right-bottom {
-  background-image: url(/img/rose.png);
+  background-image: url(/static/img/rose.png);
   width: 88px;
   height: 86px;
   right: -10px;
@@ -586,21 +586,21 @@ body {
 }
 
 .myata-bolshoi_left-bottom {
-  background-image: url(/img/myata-bolshoi.png);
+  background-image: url(/static/img/myata-bolshoi.png);
   width: 58px;
   height: 95px;
   left: -5px;
 }
 
 .listvennitsa-ekhinatse-reverse_left-bottom {
-  background-image: url(/img/listvennitsa-ekhinatse_reverse.png);
+  background-image: url(/static/img/listvennitsa-ekhinatse_reverse.png);
   width: 78px;
   height: 94px;
   left: -7px
 }
 
 .venochek-roza-perets_left-bottom {
-  background-image: url(/img/venochek-roza-perets.png);
+  background-image: url(/static/img/venochek-roza-perets.png);
   width: 65px;
   height: 97px;
   left: -7px;
@@ -608,7 +608,7 @@ body {
 }
 
 .rose_left-bottom {
-  background-image: url(/img/rose.png);
+  background-image: url(/static/img/rose.png);
   width: 88px;
   height: 86px;
   left: -22px;

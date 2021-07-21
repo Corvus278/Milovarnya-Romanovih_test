@@ -342,6 +342,8 @@ function createNewQuestion() {
         }
         alert(selectGidrolatList)
         // Запрос к серверу
+        fetch('http://192.168.88.240:5000/giveResult', { method: 'POST' })
+          .then((response) => { console.log(response) })
       }
     })
   }
@@ -350,7 +352,6 @@ function createNewQuestion() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  // setInterval(() => { console.log(giveRandomNumber(8)) }, 200)
   // Стартовая кнопка
   const startButton = document.querySelector('.main__start-test-buttom')
 
