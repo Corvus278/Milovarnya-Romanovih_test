@@ -21,7 +21,7 @@ function removeSpaceAndCS(string) {
 }
 
 
-function animateScroll(href, removeLastQuestion = false) {
+function animateScroll(href, removeLastQuestion = false, removeFirstPage = false) {
   jQuery(document).ready(function ($) {
     $('html, body').animate({
       scrollTop: $(href).offset().top
@@ -38,6 +38,19 @@ function animateScroll(href, removeLastQuestion = false) {
       const lastQuestion = allQuestions[allQuestions.length - 1]
 
       lastQuestion.remove()
+    }, pauseBeforeScroll + scrollAnimateDuration)
+  }
+
+  // Удаление всего кроме секции с финальной страницей
+  if (removeFirstPage) {
+    const sections = Array.from(document.querySelectorAll('section'))
+    console.log(`${typeof sections} - ${sections}`)
+    setTimeout(() => {
+      sections.forEach((element, i, arr) => {
+        if (i !== arr.length - 1) {
+          element.remove()
+        }
+      })
     }, pauseBeforeScroll + scrollAnimateDuration)
   }
 }
@@ -340,10 +353,20 @@ function createNewQuestion() {
             selectGidrolatList.push(removeSpaceAndCS(element))
           })
         }
-        alert(selectGidrolatList)
         // Запрос к серверу
-        fetch('http://192.168.88.240:5000/giveResult', { method: 'POST' })
-          .then((response) => { console.log(response) })
+        // fetch('http://192.168.88.240:5000/giveResult', { method: 'POST' })
+        //   .then((response) => { console.log(response) })
+
+        // Добавление финальной страницы
+        const finalPage = document.querySelector('.final-page')
+        finalPage.style.display = 'block'
+        finalPage.id = ++counterForIdQuestionSection
+        const mainTeg = document.querySelector('main')
+        mainTeg.append(finalPage)
+        setTimeout(() => {
+          const href = '#' + String(counterForIdQuestionSection)
+          animateScroll(href, false, true)
+        }, pauseBeforeScroll)
       }
     })
   }
@@ -352,6 +375,7 @@ function createNewQuestion() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+
   // Стартовая кнопка
   const startButton = document.querySelector('.main__start-test-buttom')
 
