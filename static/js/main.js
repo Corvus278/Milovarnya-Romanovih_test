@@ -3,6 +3,7 @@ let counterForIdQuestionSection = 1000
 let numberQuestion = 0
 let firstQuestionAnswer
 let selectGidrolatList = []
+let gidrolatInfoList
 const scrollAnimateDuration = 800
 const pauseBeforeScroll = 300
 
@@ -368,18 +369,19 @@ function createNewQuestion() {
         // Запрос к серверу
         fetch('http://192.168.88.240:5000/giveResult', {
           body: JSON.stringify({
-            'products': filterProductList(selectGidrolatList)
+            'productsNames': filterProductList(selectGidrolatList)
           }),
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           method: 'POST',
         })
           .then((response) => { return response.json() })
           .then((data) => {
-            const gidrolatInfoList = data.products
+            gidrolatInfoList = data.products
+            createFinalPage()
           })
 
         // Добавление финальной страницы
-        createFinalPage()
+
       }
     })
   }
@@ -409,12 +411,11 @@ function createFinalPage() {
       moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
     }
   ]
-  addGidrolats(gidrolats)
+  addGidrolats(gidrolatInfoList)
 
   setTimeout(() => {
     const href = '#' + String(counterForIdQuestionSection)
     const mainMarginTop = parseInt(getComputedStyle(document.querySelector('main')).marginTop)
-    console.log(mainMarginTop)
     animateScroll(href, false, true, -mainMarginTop)
   }, pauseBeforeScroll)
   // Возвращаем скролл
