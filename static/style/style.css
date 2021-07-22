@@ -122,7 +122,7 @@ body {
   margin-bottom: 80px;
   background-color: inherit;
   border: 2px solid var(--logo-brown);
-  border-radius: none;
+  border-radius: 0px;
   color: var(--logo-brown);
   font-family: inherit;
   font-size: inherit;
@@ -455,7 +455,7 @@ body {
 .feedback-form__submit {
   padding: 10px 45px;
   border: none;
-  border-radius: none;
+  border-radius: 0px;
   background-color: var(--logo-brown);
   color: white;
   font-size: 18px;
