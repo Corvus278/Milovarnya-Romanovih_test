@@ -89,10 +89,6 @@ function addGidrolats(gidrolatInfoList) {
     givButtonPosition()
   })
 
-  window.addEventListener('scroll', () => {
-    givButtonPosition()
-  })
-
   window.addEventListener('resize', () => {
     givButtonPosition()
   })

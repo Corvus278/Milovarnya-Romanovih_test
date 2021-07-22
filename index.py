@@ -11,8 +11,10 @@ def index():
 
 @app.route('/giveResult', methods=['POST'])
 def give_result():
-    json_string = json.dumps({'string': 'Hello, world!'})
-    response = make_response(json_string, 200)
+    req = request.json  
+    print(req)
+    
+    response = make_response(json.dumps(req), 200)
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 

@@ -228,8 +228,9 @@ body {
 
 
 /* Final page */
-.final {
-  margin-top: 95px;
+.final-page {
+  /* Что бы не было видно декора */
+  margin-top: 50px;
 }
 
 .final__heading {
