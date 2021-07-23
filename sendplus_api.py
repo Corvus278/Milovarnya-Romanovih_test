@@ -2,20 +2,21 @@ import json
 from pysendpulse.pysendpulse import PySendPulse
 
 
-def give_form_data(email, name):
+def give_form_data(email, name, gidrolats, api_obj):
     """Отправка данных в адрессную книгу которая указанна в sendPulsData.json.
     Возвращает словарь с результатом отправки """
-    SPApiProxy = api_int()
     adressbook_id = read_api_info()['adressbook_id']
 
     dict_of_info = [{
             'email': email,
             'variables': {
-                'имя': name
+                'Имя': name,
+                'Гидролаты': gidrolats
             }
     }]
 
-    response = SPApiProxy.add_emails_to_addressbook(adressbook_id, dict_of_info)
+    response = api_obj.add_emails_to_addressbook(adressbook_id, dict_of_info)
+    complited = time.time()
     return response
 
 

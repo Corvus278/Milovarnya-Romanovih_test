@@ -435,7 +435,8 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify(
         {
           name: formName.value,
-          email: formEmail.value
+          email: formEmail.value,
+          gidrolats: filterProductList(selectGidrolatList).join(', ')
         }
       ),
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
