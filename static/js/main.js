@@ -425,7 +425,6 @@ function createFinalPage() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
   // Стартовая кнопка
   const startButton = document.querySelector('.main__start-test-buttom')
 
@@ -439,5 +438,25 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       animateScroll('#1000')
     }, pauseBeforeScroll)
+  })
+
+  // Обработчик для отправки формы обратной связи
+  const form = document.querySelector('.feedback-form')
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const formName = form.querySelector('.feedback-form__input--name')
+    const formEmail = form.querySelector('.feedback-form__input--email')
+
+    fetch('/sendData', {
+      body: JSON.stringify(
+        {
+          name: formName.value,
+          email: formEmail.value
+        }
+      ),
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
+      method: 'POST'
+    })
+      .then(response => alert(response.status))
   })
 })

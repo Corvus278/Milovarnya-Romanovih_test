@@ -1,6 +1,7 @@
 import json
 import sqlite3
 from flask import Flask, request, make_response, render_template
+from sendplus_api import give_form_data
 
 app = Flask(__name__)
 
@@ -51,6 +52,21 @@ def give_result():
     product_dict_json = json.dumps({'products': products_list})
     
     response = make_response(product_dict_json, 200)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
+@app.route('/sendData', methods=['POST'])
+def send_data():
+    form_name = request.json['name']
+    form_email = request.json['email']
+
+    status = give_form_data(form_email, form_name)
+
+    if status['result']:
+        response = make_response(json.dumps('ok'), 200)
+    else:
+        response = make_response(json.dumps('Данные по через апи не отправлены'), 500)
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 

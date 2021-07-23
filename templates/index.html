@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Подбери себе гидролат!</title>
+  <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="http://unpkg.com/swiper/swiper-bundle.css" />
   <link rel="stylesheet" href="http://unpkg.com/swiper/swiper-bundle.min.css" />
   <link href="/static/style/style.css" rel="stylesheet">
@@ -109,14 +110,15 @@
               Он придёт к вам на электронную почту, как только вы заполните форму:
             </p>
           </div>
-          <form action="" class="feedback-form">
+          <form class="feedback-form">
             <div class="feedback-form__input-container">
-              <input class="feedback-form__input feedback-form__input--name" placeholder="Имя" type="text" name="name">
-              <input class="feedback-form__input feedback-form__input--email" placeholder="E-mail" type="email"
-                name="email">
+              <input class="feedback-form__input feedback-form__input--name" placeholder="Имя*" type="text" name="name"
+                required>
+              <input class="feedback-form__input feedback-form__input--email" placeholder="E-mail*" type="email"
+                name="email" required>
             </div>
             <div class="feedback-form__checkbox-container">
-              <input class="feedback-form__checkbox" type="checkbox" id="check">
+              <input class="feedback-form__checkbox" type="checkbox" id="check" required>
               <label class="feedback-form__check-label" for="check">Согласен на обработку данных</label>
             </div>
             <button class="feedback-form__submit" type="submit">Отправить</button>
