@@ -200,7 +200,6 @@ function addDecor(element) {
 function removeSpaceAndCS(list) {
   const newList = []
   for (const string of list) {
-    console.log(string)
     // Удаление пробелов
     let newString = string.split(' ').join('')
     // Перевод строки в нижний регистр
@@ -217,6 +216,17 @@ function filterProductList(productList) {
     if (!newList.includes(product)) {
       newList.push(product)
     }
+  }
+  return newList
+}
+
+
+function removeExcessProduct(list, countItemKeep = 3) {
+  const newList = []
+  let i = 0
+  while ((i < countItemKeep) && (i < list.length)) {
+    newList.push(list[i])
+    i++
   }
   return newList
 }
@@ -371,7 +381,7 @@ function createNewQuestion() {
         // Запрос к серверу
         fetch('http://192.168.88.240:5000/giveResult', {
           body: JSON.stringify({
-            'productsNames': removeSpaceAndCS(filterProductList(selectGidrolatList))
+            'productsNames': removeSpaceAndCS(removeExcessProduct(filterProductList(selectGidrolatList)))
           }),
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           method: 'POST',
@@ -436,12 +446,16 @@ document.addEventListener('DOMContentLoaded', () => {
         {
           name: formName.value,
           email: formEmail.value,
-          gidrolats: filterProductList(selectGidrolatList).join(', ')
+          gidrolats: removeExcessProduct(filterProductList(selectGidrolatList)).join(', ')
         }
       ),
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       method: 'POST'
     })
-      .then(response => alert(response.status))
+      .then((response) => {
+        if (response.status != 200) {
+          alert('Ошибка :(\nПопробуйте отправить данные ещё раз')
+        }
+      })
   })
 })
