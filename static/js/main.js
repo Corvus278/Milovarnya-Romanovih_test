@@ -197,22 +197,24 @@ function addDecor(element) {
 }
 
 
-function removeSpaceAndCS(string) {
-  // Удаление пробелов
-  string = string.split(' ').join('')
-  // Перевод строки в нижний регистр
-  string = string.toLowerCase()
-
-
-  return string
+function removeSpaceAndCS(list) {
+  const newList = []
+  for (const string of list) {
+    console.log(string)
+    // Удаление пробелов
+    let newString = string.split(' ').join('')
+    // Перевод строки в нижний регистр
+    newString = newString.toLowerCase()
+    newList.push(newString)
+  }
+  return newList
 }
-
 
 
 function filterProductList(productList) {
   const newList = []
   for (const product of productList) {
-    if (newList.indexOf(product) === -1) {
+    if (!newList.includes(product)) {
       newList.push(product)
     }
   }
@@ -291,12 +293,12 @@ function createNewQuestion() {
       if (radioButtonYes !== null) {
         if (Array.isArray(gidrolats)) {
           for (let gidrolat of gidrolats) {
-            gidrolat = removeSpaceAndCS(gidrolat)
+            gidrolat = gidrolat
             const gidrolatIndex = selectGidrolatList.indexOf(gidrolat)
             selectGidrolatList.splice(gidrolatIndex, gidrolatIndex + 1)
           }
         } else {
-          gidrolats = removeSpaceAndCS(gidrolats)
+          gidrolats = gidrolats
           const gidrolatIndex = selectGidrolatList.indexOf(gidrolats)
           selectGidrolatList.splice(gidrolatIndex, gidrolatIndex + 1)
         }
@@ -342,10 +344,10 @@ function createNewQuestion() {
         const selectGidrolatName = questionDict[question.textContent]
         if (Array.isArray(selectGidrolatName)) {
           for (const i of selectGidrolatName) {
-            selectGidrolatList.push(removeSpaceAndCS(i))
+            selectGidrolatList.push(i)
           }
         } else {
-          selectGidrolatList.push(removeSpaceAndCS(selectGidrolatName))
+          selectGidrolatList.push(selectGidrolatName)
         }
       }
 
@@ -363,13 +365,13 @@ function createNewQuestion() {
           const firstAnswerGidrolats = Object.values(firstAnswerQuestions)
 
           firstAnswerGidrolats.slice(0, 3).forEach((element) => {
-            selectGidrolatList.push(removeSpaceAndCS(element))
+            selectGidrolatList.push(element)
           })
         }
         // Запрос к серверу
         fetch('http://192.168.88.240:5000/giveResult', {
           body: JSON.stringify({
-            'productsNames': filterProductList(selectGidrolatList)
+            'productsNames': removeSpaceAndCS(filterProductList(selectGidrolatList))
           }),
           headers: { 'Content-Type': 'application/json;charset=utf-8' },
           method: 'POST',
