@@ -16,7 +16,6 @@ def give_form_data(email, name, gidrolats, api_obj):
     }]
 
     response = api_obj.add_emails_to_addressbook(adressbook_id, dict_of_info)
-    complited = time.time()
     return response
 
 
