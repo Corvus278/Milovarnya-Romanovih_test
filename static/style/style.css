@@ -9,6 +9,7 @@
 :root {
   --main-theme: #FDFAF5;
   --logo-brown: #983724;
+  --logo-brown-transparency: #983724d1;
   --arrow-button_size: 40px;
   --arrow-button_margin: 10px;
   --header-height: 70px;
@@ -310,7 +311,7 @@ body {
   position: static;
   max-width: 240px;
   margin: 0 auto;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
   z-index: 0;
 }
 
@@ -461,6 +462,10 @@ body {
   font-size: 18px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   cursor: pointer;
+}
+
+.feedback-form__submit:active {
+  background-color: var(--logo-brown-transparency)
 }
 
 /* ------- Decor -------*/
