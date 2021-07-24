@@ -279,15 +279,14 @@ function createFirstQuestion() {
 }
 
 
-function formNotification(statusCode) {
+function formNotification(message, duration = 3000) {
   const notifier = document.querySelector('.form-notification')
-  const message = statusCode === 200 ? 'Спасибо! Данные отправлены' : 'Ошибка:( Попробуйте отправить ещё раз'
   notifier.querySelector('.form-notification__message').textContent = message
 
   notifier.classList.remove('form-notification--hidden')
   setTimeout(() => {
     notifier.classList.add('form-notification--hidden')
-  }, 3000)
+  }, duration)
 }
 
 
@@ -452,8 +451,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, pauseBeforeScroll)
   })
 
-  // Обработчик для отправки формы обратной связи
+  // Обработчики для отправки формы обратной связи
   const form = document.querySelector('.feedback-form')
+  form.querySelector('.feedback-form__submit').addEventListener('click', () => {
+    console.log(form.querySelector('.feedback-form__checkbox').checked)
+    if (!form.querySelector('.feedback-form__checkbox').checked)
+      formNotification('Необходимо согласие на обработку данных!')
+  })
   form.addEventListener('submit', (e) => {
     e.preventDefault()
     const formName = form.querySelector('.feedback-form__input--name')
@@ -471,9 +475,11 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'POST'
     })
       .then((response) => {
-        formNotification(response.status)
         if (response.status === 200) {
+          formNotification('Спасибо! Данные отправлены')
           document.querySelector('.feedback-form__submit').disabled = true
+        } else {
+          formNotification('Ошибка:( Попробуйте отправить ещё раз')
         }
       })
   })
