@@ -1,7 +1,7 @@
 import json
 import sqlite3
 from flask import Flask, request, make_response, render_template
-from sendplus_api import api_int, give_form_data
+from sendplus_api import api_int, send_form_data
 
 app = Flask(__name__)
 
@@ -66,8 +66,9 @@ def send_data():
     form_email = request.json['email']
     form_gidrolats = request.json['gidrolats']
 
-    status = give_form_data(form_email, form_name, form_gidrolats, api_obj)
+    status = send_form_data(form_email, form_name, form_gidrolats, api_obj)
 
+    print(status)
     if status['result']:
         response = make_response(json.dumps('ok'), 200)
     else:

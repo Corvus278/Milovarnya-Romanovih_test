@@ -2,7 +2,7 @@ import json
 from pysendpulse.pysendpulse import PySendPulse
 
 
-def give_form_data(email, name, gidrolats, api_obj):
+def send_form_data(email, name, gidrolats, api_obj):
     """Отправка данных в адрессную книгу которая указанна в sendPulsData.json.
     Возвращает словарь с результатом отправки """
     adressbook_id = read_api_info()['adressbook_id']
@@ -35,3 +35,4 @@ def api_int():
     TOKEN_STORAGE = 'memcached'
     SPApiProxy = PySendPulse(REST_API_ID, REST_API_SECRET, TOKEN_STORAGE)
     return SPApiProxy
+
