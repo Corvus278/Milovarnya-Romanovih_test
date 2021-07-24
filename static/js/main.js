@@ -279,6 +279,18 @@ function createFirstQuestion() {
 }
 
 
+function formNotification(statusCode) {
+  const notifier = document.querySelector('.form-notification')
+  const message = statusCode === 200 ? 'Спасибо! Данные отправлены' : 'Ошибка:( Попробуйте отправить ещё раз'
+  notifier.querySelector('.form-notification__message').textContent = message
+
+  notifier.classList.remove('form-notification--hidden')
+  setTimeout(() => {
+    notifier.classList.add('form-notification--hidden')
+  }, 3000)
+}
+
+
 function createNewQuestion() {
   const section = makeElement('section', 'new-question')
   const container = makeElement('div', ['container', 'container--question'])
@@ -379,19 +391,19 @@ function createNewQuestion() {
           })
         }
         // Запрос к серверу
-        fetch('http://192.168.88.240:5000/giveResult', {
-          body: JSON.stringify({
-            'productsNames': removeSpaceAndCS(removeExcessProduct(filterProductList(selectGidrolatList)))
-          }),
-          headers: { 'Content-Type': 'application/json;charset=utf-8' },
-          method: 'POST',
-        })
-          .then((response) => { return response.json() })
-          .then((data) => {
-            gidrolatInfoList = data.products
-            // Добавление гидролата
-            createFinalPage()
-          })
+        // fetch('http://192.168.88.240:5000/giveResult', {
+        //   body: JSON.stringify({
+        //     'productsNames': removeSpaceAndCS(removeExcessProduct(filterProductList(selectGidrolatList)))
+        //   }),
+        //   headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        //   method: 'POST',
+        // })
+        //   .then((response) => { return response.json() })
+        //   .then((data) => {
+        //     gidrolatInfoList = data.products
+        //     // Добавление гидролата
+        //     createFinalPage()
+        //   })
       }
     })
   }
@@ -426,13 +438,22 @@ document.addEventListener('DOMContentLoaded', () => {
   window.questionBackButton = document.querySelector('.question__button-back')
 
   // Начало теста
-  startButton.addEventListener('click', () => {
-    createFirstQuestion()
-    removeUserScroll()
-    setTimeout(() => {
-      animateScroll('#1000')
-    }, pauseBeforeScroll)
-  })
+  // startButton.addEventListener('click', () => {
+  //   createFirstQuestion()
+  //   removeUserScroll()
+  //   setTimeout(() => {
+  //     animateScroll('#1000')
+  //   }, pauseBeforeScroll)
+  // })
+
+  gidrolatInfoList = [{
+    name: 'Гидролат Алое',
+    imgUrl: 'http://romylo.ru/pictures/product/big/5133_big.JPG ',
+    description: 'способствует синтезу коллагена;тонизирует;увлажняет;успокаивает кожу после принятия солнечных ванн, при укусах насекомых и ожогах различного характера;освежает кожу;'.split(';'),
+    howToUse: 'В чистом виде как тоник для кожи;Распыление непосредственно на кожу во время отопительного и летнего сезона для увлажнения и питания;В качестве обогащающего компонента в масках для лица: смешать гидролат с белой или розовой глиной или порошковой маской, нанести на лицо на 10-15 минут;В виде косметического льда для тонизирования и матовости кожи.'.split(';'),
+    moreLink: 'http://romylo.ru/products/gidrolat-aloe-1'
+  }]
+  createFinalPage()
 
   // Обработчик для отправки формы обратной связи
   const form = document.querySelector('.feedback-form')
@@ -453,9 +474,9 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'POST'
     })
       .then((response) => {
-        if (response.status != 200) {
-          alert('Ошибка :(\nПопробуйте отправить данные ещё раз')
-        }
+        formNotification(response.status)
+        console.log(response.statusCode)
+        // document.querySelector('.feedback-form__submit').disabled = true
       })
   })
 })

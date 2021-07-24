@@ -68,6 +68,9 @@
         </svg>
       </button>
       <section class="final-page" style="display:none;">
+        <div class="form-notification form-notification--hidden">
+          <p class="form-notification__message">Спасибо! Данные отправлены</p>
+        </div>
         <div class="container">
           <h1 class="final__heading">
             Спасибо, что прошли наш тест!
@@ -118,7 +121,7 @@
                 name="email" required>
             </div>
             <div class="feedback-form__checkbox-container">
-              <input class="feedback-form__checkbox" type="checkbox" id="check" required>
+              <input class="feedback-form__checkbox" type="checkbox" id="check" required checked>
               <label class="feedback-form__check-label" for="check">Согласен на обработку данных</label>
             </div>
             <button class="feedback-form__submit" type="submit">Отправить</button>
