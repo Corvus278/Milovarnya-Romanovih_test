@@ -31,16 +31,26 @@ function createGidrolatArticle(gidrolatInfo) {
   h2Heading.textContent = name
   img.src = imgUrl
 
-  for (const i of description) {
+  for (let i of description) {
     const li = createElement('li', 'gidrolat__description-item')
+    // Добавление ";" или "." в конец каждого пункта
+    if (description.indexOf(i) !== description.length - 1) {
+      i = i + ';'
+    }
+
     li.textContent = i
     ulDescription.append(li)
   }
 
   h3HowToUse.textContent = 'Как применять:'
 
-  for (const i of howToUse) {
+  for (let i of howToUse) {
     const li = createElement('li', 'girolat__as-use-item')
+    // Добавление ";" или "." в конец каждого пункта
+    if (howToUse.indexOf(i) !== howToUse.length - 1) {
+      i = i + ';'
+    }
+
     li.textContent = i
     ulHowToUse.append(li)
   }
