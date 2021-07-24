@@ -387,7 +387,13 @@ function createNewQuestion() {
           const firstAnswerGidrolats = Object.values(firstAnswerQuestions)
 
           firstAnswerGidrolats.slice(0, 3).forEach((element) => {
-            selectGidrolatList.push(element)
+            if (Array.isArray(element)) {
+              for (const i of element) {
+                selectGidrolatList.push(i)
+              }
+            } else {
+              selectGidrolatList.push(element)
+            }
           })
         }
         // Запрос к серверу
@@ -466,7 +472,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
       .then((response) => {
         formNotification(response.status)
-        console.log(response.statusCode)
         if (response.status === 200) {
           document.querySelector('.feedback-form__submit').disabled = true
         }
