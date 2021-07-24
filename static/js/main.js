@@ -476,7 +476,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .then((response) => {
         formNotification(response.status)
         console.log(response.statusCode)
-        // document.querySelector('.feedback-form__submit').disabled = true
+        if (response.status === 200) {
+          document.querySelector('.feedback-form__submit').disabled = true
+        }
       })
   })
 })
