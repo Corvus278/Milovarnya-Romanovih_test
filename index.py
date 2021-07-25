@@ -54,7 +54,7 @@ def give_result():
                 }
             )
     product_dict_json = json.dumps({'products': products_list})
-    
+
     response = make_response(product_dict_json, 200)
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response

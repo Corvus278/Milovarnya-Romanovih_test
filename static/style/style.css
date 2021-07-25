@@ -49,6 +49,10 @@ h3 {
   margin: 0px;
 }
 
+button:focus {
+  outline: none;
+}
+
 body {
   margin: 8px 0px;
   font-family: Georgia, 'Times New Roman', Times, serif;

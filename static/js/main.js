@@ -396,7 +396,7 @@ function createNewQuestion() {
           })
         }
         // Запрос к серверу
-        fetch('http://192.168.88.240:5000/giveResult', {
+        fetch('/giveResult', {
           body: JSON.stringify({
             'productsNames': removeSpaceAndCS(removeExcessProduct(filterProductList(selectGidrolatList)))
           }),
