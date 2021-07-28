@@ -298,6 +298,9 @@ function createNewQuestion() {
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
 
+  // Удаление скролла
+  removeUserScroll()
+
   // Кнопка для возвращения к предыдущему вопросу
   const dupQuestionBackButton = questionBackButton.cloneNode(true)
   dupQuestionBackButton.style.display = 'block'
@@ -445,9 +448,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Начало теста
   startButton.addEventListener('click', () => {
     createFirstQuestion()
-    removeUserScroll()
+    // removeUserScroll()
     setTimeout(() => {
-      animateScroll('#1000')
+      animateScroll('#1000', false, true)
     }, pauseBeforeScroll)
   })
 
