@@ -37,7 +37,7 @@ function animateScroll(href, removeLastQuestion = false, removeFirstPage = false
     setTimeout(() => {
       sections.forEach((element, i, arr) => {
         if (i !== arr.length - 1) {
-          element.remove()
+          element.style.display = 'none'
         }
       })
       // Позиционирование кнопок для слайдера
@@ -269,6 +269,8 @@ function createFirstQuestion() {
   for (const radioButtonsLabel of radioButtonsLabels) {
     radioButtonsLabel.addEventListener('click', () => {
       firstQuestionAnswer = radioButtonsLabel.value
+      // Удаление скролла
+      removeUserScroll()
       createNewQuestion()
       setTimeout(() => {
         const href = '#1001'
@@ -298,8 +300,6 @@ function createNewQuestion() {
   const varianWithButtonN = makeAnswerVariant('Нет', 'new question')
   const answers = makeList([varianWithButtonY, varianWithButtonN], ['variants', 'variants--new-questions'], 'variant')
 
-  // Удаление скролла
-  removeUserScroll()
 
   // Кнопка для возвращения к предыдущему вопросу
   const dupQuestionBackButton = questionBackButton.cloneNode(true)
