@@ -1,19 +1,45 @@
+# name: Deploy
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       # Setap key
+#       - run: set -eu
+#       - run: mkdir "$HOME/.ssh"
+#       - run: echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtuBTVY5UFg6cOaOIn7PeoIEfngXoFYyLjnqmigjJp9U5K9j5oTedaIcMnuDzNKM0KqHv+e8Rv1O9vUrM5sd0q5RXW//n4u4NGhrZjEjUUuyjoaCuQIHXk7hVRpQjSqAjlOR7lvq/dIeAZQl5A6GFdjpOabMqINgFTaR/9es4tj2xUu5uIjCesQZNTslZsMAC0xNpa5auDe2PznxUhrURfKSXejarhF9PabOpoUc5OgxS2Ooh5f+J86H7i+QuJUFeJkk+f0je4yITIjouYKDLdMN77Di40rsNXh3tsaGsvkGUHtOhL0m9D5TJqhUXr+npZb5XvOBb1zynBrMJD3TmGq5tEh1A/bNil0RMMY2ZjZaAUvfl8LXJ7+n4ArvRQQUBONOGHVKHVvzYMfu7+ZNvQ6fkeWVVNWnJESvDGuO3SOb9A+/GqbhbO0TBrAPJnFphJ6b0YHB7vnAo+l7nBC0hOwzO7C9BJdH4FJquIJSZ2SYALm3SAkMWaA6XWv2I6poU= corvus@DESKTOP-VP6AKB1" > "$HOME/.ssh/key"
+#       - run: chmod 600 "$HOME/.ssh/key"
+#       # Deploy
+#       - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress . root@194.67.104.28:/root/
+
 name: Deploy
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
       - uses: actions/checkout@v2
-      # Setap key
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtuBTVY5UFg6cOaOIn7PeoIEfngXoFYyLjnqmigjJp9U5K9j5oTedaIcMnuDzNKM0KqHv+e8Rv1O9vUrM5sd0q5RXW//n4u4NGhrZjEjUUuyjoaCuQIHXk7hVRpQjSqAjlOR7lvq/dIeAZQl5A6GFdjpOabMqINgFTaR/9es4tj2xUu5uIjCesQZNTslZsMAC0xNpa5auDe2PznxUhrURfKSXejarhF9PabOpoUc5OgxS2Ooh5f+J86H7i+QuJUFeJkk+f0je4yITIjouYKDLdMN77Di40rsNXh3tsaGsvkGUHtOhL0m9D5TJqhUXr+npZb5XvOBb1zynBrMJD3TmGq5tEh1A/bNil0RMMY2ZjZaAUvfl8LXJ7+n4ArvRQQUBONOGHVKHVvzYMfu7+ZNvQ6fkeWVVNWnJESvDGuO3SOb9A+/GqbhbO0TBrAPJnFphJ6b0YHB7vnAo+l7nBC0hOwzO7C9BJdH4FJquIJSZ2SYALm3SAkMWaA6XWv2I6poU= corvus@DESKTOP-VP6AKB1" > "$HOME/.ssh/key"
+      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
       # Deploy
-      - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress . root@194.67.104.28:/root/
+      - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress . root@romylo-test.ru:/root/
