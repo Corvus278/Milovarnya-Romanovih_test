@@ -1,5 +1,5 @@
 function startSwiper() {
-  const swiper = new Swiper('.swiper-container', {
+  const swiper = new Swiper('.swiper', {
     speed: 800,
     spaceBetween: 50,
 
