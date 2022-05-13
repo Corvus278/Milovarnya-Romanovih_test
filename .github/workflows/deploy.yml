@@ -18,6 +18,6 @@ jobs:
       - run: cat "$HOME/.ssh/key.pub"
       - run: chmod 600 "$HOME/.ssh/key.pub"
       - run: echo "194.67.104.28" > "$HOME/.ssh/known_hosts"
-      - run: chmod 600 "$HOME/.ssh/knowm_hosts"
+      - run: chmod 600 "$HOME/.ssh/known_hosts"
       # Deploy
       - run: rsync -e "ssh -i $HOME/.ssh/key.pub -o StrictHostKeyChecking=no" --archive --compress . corvus278@romylo-test.ru:/root/
