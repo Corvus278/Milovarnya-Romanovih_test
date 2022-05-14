@@ -13,10 +13,7 @@ jobs:
       # Setup key
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key.pub"
-      - run: cat "$HOME/.ssh/key.pub"
-      - run: chmod 600 "$HOME/.ssh/key.pub"
-      - run: echo "194.67.104.28" > "$HOME/.ssh/known_hosts"
-      - run: chmod 600 "$HOME/.ssh/known_hosts"
+      - run: echo "${{ secrets.key }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
       # Deploy
-      - run: rsync -e "ssh -i $HOME/.ssh/key.pub -o StrictHostKeyChecking=no" --archive --compress . corvus278@romylo-test.ru:/root/
+      - run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress . corvus278@romylo-test.ru:/root/
