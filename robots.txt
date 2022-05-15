@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /venv
+Disallow: /products.db
+Disallow: /index.py
+Disallow: /sendpuls_api.py
+Disallow: /README.md
+Disallow: /.github
+Disallow: /Документы
+Disallow: /static/date
+Disallow: /static/img
