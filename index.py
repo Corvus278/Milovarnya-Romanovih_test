@@ -1,7 +1,7 @@
 import json
 import sqlite3
 from flask import Flask, request, make_response, render_template
-from sendplus_api import api_int, send_form_data
+from sendplus_api import SendPulseApi
 
 app = Flask(__name__)
 
@@ -30,7 +30,7 @@ all_product = cursor.fetchall()
 
 
 # Инициализация обекта для взаимодействия с апи
-api_obj = api_int()
+pulse_api = SendPulseApi()
 
 
 @app.route('/')
@@ -40,6 +40,8 @@ def index():
 
 @app.route('/giveResult', methods=['POST'])
 def give_result():
+    def clear_text(text_list): return text_list.replace(
+        "\n", ' ').replace('\xa0', ' ').split(';')
     products_names = request.json['productsNames']
     products_list = []
     for product in all_product:
@@ -48,8 +50,8 @@ def give_result():
                 {
                     'name': product['name'],
                     'imgUrl': product['imgUrl'],
-                    'description': product['description'].replace("\n", '').replace('\xa0', '').split(';'),
-                    'howToUse': product['howToUse'].replace("\n", '').replace('\xa0', '').split(';'),
+                    'description': clear_text(product['description']),
+                    'howToUse': clear_text(product['howToUse']),
                     'moreLink': product['moreLink']
                 }
             )
@@ -62,17 +64,15 @@ def give_result():
 
 @app.route('/sendData', methods=['POST'])
 def send_data():
-    form_name = request.json['name']
-    form_email = request.json['email']
-    form_gidrolats = request.json['gidrolats']
-
-    status = send_form_data(form_email, form_name, form_gidrolats, api_obj)
+    data = request.json
+    status = pulse_api.send_form_data(data)
 
     print(status)
     if status['result']:
         response = make_response(json.dumps('ok'), 200)
     else:
-        response = make_response(json.dumps('Данные по через апи не отправлены'), 500)
+        response = make_response(json.dumps(
+            'Данные через апи не отправлены'), 500)
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
