@@ -1,7 +1,7 @@
 import json
 import sqlite3
 from flask import Flask, request, make_response, render_template
-from sendplus_api import SendPulseApi
+from sendpuls_api import SendPulseApi
 
 app = Flask(__name__)
 
